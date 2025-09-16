@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<audio id="audioPlayer">
+  <source src="./recorded-audio.wav" type="audio/wav">
+</audio>
+<button class="play">播放</button>
+</body>
+<script>
+  const audio = document.getElementById('audioPlayer')
+  const btn = document.querySelector('.btn')
+  btn?.addEventListener('click',()=>{
+    audio.play().catch((error) => {
+      console.error('Error playing audio:', error);
+    });
+  })
+</script>
+</html>

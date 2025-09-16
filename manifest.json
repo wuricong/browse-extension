@@ -1,0 +1,31 @@
+{
+  "name": "youtube",
+  "version": "1.0",
+  "description": "Build an Extension!",
+  "manifest_version": 3,
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "bookmarks",
+    "activeTab",
+    "scripting",
+    "nativeMessaging",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "content_scripts": [
+    {
+      "js": [
+        "index.js"
+      ],
+      "matches": ["https://www.youtube.com/*","https://www.douyin.com/*","https://developer.chrome.com/*","https://v3-web.douyinvod.com/*"]
+    }
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_popup": "web.html"
+  }
+}

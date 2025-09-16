@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .video_btn {
+      /* 清除默认边框 */
+      border: 0;
+      outline: none;
+      /* 清除默认背景 */
+      background-color: #1163b6;
+      /* 清除默认内边距和外边距 */
+      margin: 0;
+      padding: 6px 10px;
+      border-radius: 6px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+<body>
+<div style="display: flex;width: 100px;justify-content: center">
+  <button class="video_btn">下载视频</button>
+  <button class="video_btn close">取消下载</button>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
+<!--插件模式下 不允许在 html 标签下直接写 script标签脚本-->
+
