@@ -25,6 +25,6 @@
     "https://*/*"
   ],
   "chrome_url_overrides": {
-    "newtab": "dist/index.html"
+    "newtab": "vue-project/dist/index.html"
   }
 }

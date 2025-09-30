@@ -22,9 +22,6 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
-  build:{
-    outDir:path.resolve(dirname,'../dist')
-  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

@@ -8,3 +8,10 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.mask {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.1);
+}
