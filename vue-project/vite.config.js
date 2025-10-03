@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import path from 'node:path'
 import postcssImport from "postcss-import"
 import tailwindcss from "tailwindcss"
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -21,6 +22,10 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    createSvgIconsPlugin({
+      iconDirs:[path.resolve(process.cwd(),'src/svg')],
+      symbolId: 'icon-[dir]-[name]'
+    })
   ],
   resolve: {
     alias: {
