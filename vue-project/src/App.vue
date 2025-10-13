@@ -1,11 +1,12 @@
 <script setup>
-import { onMounted, ref } from "vue"
+import { computed, onMounted, ref } from "vue"
 import { primaryUrlEnum } from "../enum"
 import { DeleteOutlined } from "@ant-design/icons-vue"
 import _ from "lodash"
 
 const bookmarks = ref([])
 const searchValue = ref()
+const searchBook = ref("")
 const devItems = ref([
   {
     title: "大兴后台",
@@ -62,7 +63,9 @@ const refreshBookMarks = () => {
   })
 }
 
-const filterBookMark = () => {}
+const computedBooks = computed(() => {
+  return bookmarks.value.filter((item) => item.title.includes(searchBook.value))
+})
 
 onMounted(() => {
   refreshBookMarks()
@@ -71,17 +74,20 @@ onMounted(() => {
 
 <template>
   <div class="mask"></div>
-  <a-input style="width: 300px" @input="handleSearchChange" placeholder="请输入要搜索的内容" v-model="searchValue" />
+  <a-input style="width: 300px" @input="handleSearchChange" placeholder="请输入要搜索的内容" v-model:value="searchValue" />
   <div class="py-2 px-2">
     <div class="flex gap-2 mb-2">
-      <div v-for="item in primaryUrlEnum" :key="item.id" @click="doOpenTab(item)" class="cursor-pointer">
+      <div v-for="item in primaryUrlEnum" :key="item.id" @click="doOpenTab(item)" class="cursor-pointer" :style="item.style || ''">
         <svg-icon :name="item.svg" />
       </div>
     </div>
     <div class="py-2 flex justify-between">
       <div class="book-container w-1/3">
+        <div class="mb-2">
+          <a-input size="small" style="width: 300px" placeholder="请输入要搜索的书签" v-model:value="searchBook" />
+        </div>
         <div class="book-inner">
-          <div class="book flex justify-between items-center" v-for="item in bookmarks" :key="item.id" @click="doOpenTab(item)">
+          <div class="book flex justify-between items-center" v-for="item in computedBooks" :key="item.id" @click="doOpenTab(item)">
             <div class="flex-grow">{{ item.title }}</div>
             <DeleteOutlined class="ml-2" @click.stop="delBook(item)" />
           </div>

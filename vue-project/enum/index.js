@@ -27,12 +27,18 @@ export const primaryUrlEnum = [
   { name: "google", url: "https://www.google.com/", id: 6, svg: "google" },
   { name: "juejin", url: "https://juejin.cn/", id: 7, svg: "juejin" },
   { name: "github", url: "https://github.com/wuricong", id: 7, svg: "github" },
-];
+  { name: "vue2", url: "https://v2.cn.vuejs.org/v2/guide/", id: 8, svg: "vue2" },
+  {
+    name: "vue3",
+    url: "https://cn.vuejs.org/guide/introduction.html",
+    id: 9,
+    svg: "vue3",
+    style: { background: "#ffffff", borderRadius: "6px" },
+  },
+]
 
-export const workUrlEnum = [];
+export const workUrlEnum = []
 
-export const engineSearchEnum = [
-  { name: "google", url: "https://www.google.com/search?q=", id: 1 },
-];
+export const engineSearchEnum = [{ name: "google", url: "https://www.google.com/search?q=", id: 1 }]
 
-const searchTip = "https://www.google.com/complete/search?q=12";
+const searchTip = "https://www.google.com/complete/search?q=12"
