@@ -35,6 +35,7 @@ export const primaryUrlEnum = [
     svg: "vue3",
     style: { background: "#ffffff", borderRadius: "6px" },
   },
+  { name: "lodash", url: "https://lodash.com/docs/4.17.15", id: 9, svg: "lodash" },
 ]
 
 export const workUrlEnum = []
