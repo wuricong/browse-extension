@@ -1,45 +1,16 @@
 <script setup>
 import { computed, onMounted, ref } from "vue"
-import { primaryUrlEnum } from "../../../enum"
+import { primaryUrlEnum, devItemsEnum } from "../../../enum"
 import { DeleteOutlined, EllipsisOutlined } from "@ant-design/icons-vue"
+import Control from "@/view/control/index.vue"
 import _ from "lodash"
 
 const bookmarks = ref([])
 const searchValue = ref()
 const searchBook = ref("")
 const open = ref(false)
-const devItems = ref([
-  {
-    title: "大兴后台",
-    id: 1,
-    url: "http://192.168.0.222:8080/view/daxing_dev/job/dev_daxin_console_web/",
-  },
-  {
-    title: "大兴商城端",
-    id: 2,
-    url: "http://192.168.0.222:8080/view/daxing_dev/job/dev_daxin_mall_web/",
-  },
-  {
-    title: "公共版后台",
-    id: 3,
-    url: "http://192.168.0.222:8080/view/prod/job/prod_zpc_mall_web_console/build?delay=0sec",
-  },
-  {
-    title: "公共版商城端",
-    id: 4,
-    url: "http://192.168.0.222:8080/view/prod/job/prod_zpc_mall_web/build?delay=0sec",
-  },
-  {
-    title: "兆配云后台测试网站",
-    id: 4,
-    url: "http://dev.91qpzs.com:3085/dashboard",
-  },
-  {
-    title: "兆配云测试官网",
-    id: 4,
-    url: "http://dev.91qpzs.com:9086/shopping",
-  },
-])
+const devItems = ref(devItemsEnum)
+const controlRef = ref()
 
 const doOpenTab = (item) => {
   window.open(item.url, "_blank")
@@ -84,50 +55,84 @@ const handleBookOpen = () => {
   open.value = true
 }
 
+const handleProdUrl = (item) => {}
+
 onMounted(() => {
   refreshBookMarks()
 })
 
-const handleOk = () => {}
+const handleSearch = () => {
+  window.open(`https://www.google.com/search?q=${searchValue.value}`)
+}
+
+const handleOk = () => {
+  console.log("handleOk")
+}
+
+const openPuppeteer = () => {
+  controlRef.value.openServer()
+}
 </script>
 
 <template>
-  <div class="mask"></div>
-  <a-input style="width: 300px" @input="handleSearchChange" placeholder="请输入要搜索的内容" v-model:value="searchValue" />
-  <div class="py-2 px-2">
-    <div class="flex gap-2 mb-2">
-      <div v-for="item in primaryUrlEnum" :key="item.id" @click="doOpenTab(item)" class="cursor-pointer" :style="item.style || ''">
-        <svg-icon :name="item.svg" />
+  <a-button @click="openPuppeteer" type="primary" size="small">开启Puppeteer</a-button>
+  <div class="pt-2">
+    <div class="flex items-center ml-2 search" style="background-color: #fff; width: 300px">
+      <a-input
+        size="middle"
+        style="width: 300px"
+        @input="handleSearchChange"
+        @keydown.enter="handleSearch"
+        placeholder="请输入要搜索的内容"
+        v-model:value="searchValue"
+      />
+      <div>
+        <a-button @click="handleSearch" type="primary" size="middle">搜索</a-button>
       </div>
     </div>
 
-    <svg-icon :name="'book'" @click="handleBookOpen" class="cursor-pointer" />
+    <div class="py-2 px-2">
+      <div class="flex gap-2 mb-2">
+        <div v-for="item in primaryUrlEnum" :key="item.id" @click="doOpenTab(item)" class="cursor-pointer" :style="item.style || ''">
+          <svg-icon :style="item.svgStyle" :name="item.svg" />
+        </div>
+      </div>
 
-    <div class="py-2 flex justify-between">
-      <div class="devurl-container w-1/5">
-        <div class="book-inner">
-          <div class="book flex justify-between items-center" v-for="item in devItems" :key="item.id" @click="doOpenTab(item)">
-            <div>{{ item.title }}</div>
-            <EllipsisOutlined class="flex items-center" />
+      <svg-icon :name="'book'" @click="handleBookOpen" class="cursor-pointer" />
+
+      <div class="py-2 flex justify-between">
+        <div class="devurl-container">
+          <div class="book-inner">
+            <div class="book flex justify-between items-center" v-for="item in devItems" :key="item.id" @click="doOpenTab(item)">
+              <div>{{ item.title }}</div>
+              <a-popover v-if="item.prodUrl">
+                <template #content>
+                  <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
+                </template>
+                <EllipsisOutlined class="flex items-center" />
+              </a-popover>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div ref="mod">
-    <a-modal v-model:open="open" title="书签" @ok="handleOk" :getContainer="() => $refs.mod">
-      <div class="book-container">
-        <div class="mb-2">
-          <a-input size="small" style="width: 300px" placeholder="请输入要搜索的书签" v-model:value="searchBook" />
-        </div>
-        <div class="book-inner">
-          <div class="book flex justify-between items-center" v-for="item in computedBooks" :key="item.id" @click="doOpenTab(item)">
-            <div class="flex-grow">{{ item.title }}</div>
-            <DeleteOutlined @click.stop="delBook(item)" />
+
+    <Control ref="controlRef" />
+    <div ref="mod">
+      <a-modal v-model:open="open" title="书签" @ok="handleOk" :getContainer="() => $refs.mod">
+        <div class="book-container">
+          <div class="mb-2">
+            <a-input size="small" style="width: 300px" placeholder="请输入要搜索的书签" v-model:value="searchBook" />
+          </div>
+          <div class="book-inner">
+            <div class="book flex justify-between items-center" v-for="item in computedBooks" :key="item.id" @click="doOpenTab(item)">
+              <div class="flex-grow">{{ item.title }}</div>
+              <DeleteOutlined @click.stop="delBook(item)" />
+            </div>
           </div>
         </div>
-      </div>
-    </a-modal>
+      </a-modal>
+    </div>
   </div>
 </template>
 
@@ -137,6 +142,7 @@ const handleOk = () => {}
 }
 
 .devurl-container {
+  width: 300px;
   flex-shrink: 0;
   color: #cad2da;
   background: rgba(0, 0, 0, 0.4); /* 半透明白色背景 */
@@ -202,5 +208,16 @@ const handleOk = () => {}
 
 .anticon-ellipsis:hover {
   background: rgba(200, 200, 200, 0.2); /* 半透明白色背景 */
+}
+
+.search {
+  :deep(.ant-input) {
+    border: none;
+
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
+  }
 }
 </style>

@@ -10,6 +10,7 @@ const locale = ref(zhCN)
 </script>
 <template>
   <a-config-provider :locale="locale">
+    <div class="mask"></div>
     <Home />
   </a-config-provider>
 </template>
