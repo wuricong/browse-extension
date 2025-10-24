@@ -45,6 +45,13 @@ export const primaryUrlEnum = [
     svg: "youtube",
     svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
+  {
+    name: "deepseek",
+    url: "https://chat.deepseek.com",
+    id: 11,
+    svg: "deepseek",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
 ]
 
 export const devItemsEnum = [
@@ -52,7 +59,7 @@ export const devItemsEnum = [
     title: "大兴后台",
     id: 1,
     url: "http://192.168.0.222:8080/view/daxing_dev/job/dev_daxin_console_web/build?delay=0sec",
-    prodUrl: "http://192.168.0.222:8080/view/daxing_dev/job/dev_daxin_console_web/build?delay=0sec",
+    prodUrl: "http://192.168.0.222:8080/view/daxing_prod/job/prod_daxin_console_web/build?delay=0sec",
   },
   {
     title: "大兴商城端",

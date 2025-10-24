@@ -55,7 +55,9 @@ const handleBookOpen = () => {
   open.value = true
 }
 
-const handleProdUrl = (item) => {}
+const handleProdUrl = (item) => {
+  window.open(item.prodUrl, "_blank")
+}
 
 onMounted(() => {
   refreshBookMarks()
