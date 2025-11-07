@@ -11,7 +11,6 @@ import { ref } from "vue"
 const serverList = ref([])
 
 const closeServer = () => {
-  console.log(1111)
   fetch("http://localhost:61111/close/server")
     .then((res) => res.json())
     .then((res) => {

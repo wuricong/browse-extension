@@ -1,0 +1,24 @@
+{
+  "text-decoration": [
+    "中划线",
+    "中横线"
+  ],
+  "git-log": [
+    "显示当前分支的版本提交历史"
+  ],
+  "git branch": [
+    "列出所有本地分支"
+  ],
+  "npm config set registry https://registry.npmmirror.com": [
+    "npm 设置淘宝镜像"
+  ],
+  "原生消息传递": [
+    "~/Library/Application Support/Google/Chrome/NativeMessagingHosts"
+  ],
+  "mac新建文件": [
+    "touch 文件名"
+  ],
+  "对称差集": [
+    "xor"
+  ]
+}

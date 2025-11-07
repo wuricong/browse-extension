@@ -52,20 +52,27 @@ export const primaryUrlEnum = [
     svg: "deepseek",
     svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
+  {
+    name: "语雀",
+    url: "https://www.yuque.com/yuqueyonghuvwyqbl/muu5i6",
+    id: 11,
+    svg: "yuque",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
 ]
 
 export const devItemsEnum = [
   {
-    title: "大兴后台",
+    title: "大兴后台(部署)",
     id: 1,
-    url: "http://192.168.0.222:8080/view/daxing_dev/job/dev_daxin_console_web/build?delay=0sec",
+    url: "http://dev.91qpzs.com:10222/view/daxing_dev/job/dev_daxin_console_web/build?delay=0sec",
     prodUrl: "http://192.168.0.222:8080/view/daxing_prod/job/prod_daxin_console_web/build?delay=0sec",
   },
   {
-    title: "大兴商城端",
+    title: "大兴商城端(部署)",
     id: 2,
-    url: "http://192.168.0.222:8080/view/daxing_dev/job/dev_daxin_mall_web/",
-    prodUrl: "http://192.168.0.222:8080/view/daxing_dev/job/dev_daxin_console_web/build?delay=0sec",
+    url: "http://dev.91qpzs.com:10222/view/daxing_dev/job/dev_daxin_mall_web/build?delay=0sec",
+    prodUrl: "http://192.168.0.222:8080/view/daxing_prod/job/prod_daxin_mall_web/build?delay=0sec",
   },
   {
     title: "公共版后台",
@@ -78,14 +85,15 @@ export const devItemsEnum = [
     url: "http://192.168.0.222:8080/view/prod/job/prod_zpc_mall_web/build?delay=0sec",
   },
   {
-    title: "兆配云后台测试网站",
+    title: "兆配云后台",
     id: 4,
     url: "http://dev.91qpzs.com:3085/dashboard",
   },
   {
-    title: "兆配云测试官网",
+    title: "兆配云商城",
     id: 4,
     url: "http://dev.91qpzs.com:9086/shopping",
+    propUrl: "https://www.zhaopeiyun.com",
   },
 ]
 
@@ -94,3 +102,60 @@ export const workUrlEnum = []
 export const engineSearchEnum = [{ name: "google", url: "https://www.google.com/search?q=", id: 1 }]
 
 const searchTip = "https://www.google.com/complete/search?q=12"
+
+export const testUrls = [
+  {
+    dateAdded: 1678090268327,
+    id: "7",
+    index: 1,
+    parentId: "1",
+    syncing: false,
+    title: "快速入门",
+    url: "https://www.yuque.com/cuggz/feplus/mactt6",
+  },
+  {
+    dateAdded: 1678090268327,
+    id: "7",
+    index: 1,
+    parentId: "1",
+    syncing: false,
+    title: "a",
+    url: "https://www.yuque.com/cuggz/feplus/mactt6",
+  },
+  {
+    dateAdded: 1678090268327,
+    id: "7",
+    index: 1,
+    parentId: "1",
+    syncing: false,
+    title: "快",
+    url: "https://www.yuque.com/cuggz/feplus/mactt6",
+  },
+  {
+    dateAdded: 1678090268327,
+    id: "7",
+    index: 1,
+    parentId: "1",
+    syncing: false,
+    title: "bba",
+    url: "https://www.yuque.com/cuggz/feplus/mactt6",
+  },
+  {
+    dateAdded: 1678090268327,
+    id: "7",
+    index: 1,
+    parentId: "1",
+    syncing: false,
+    title: "bbba",
+    url: "https://www.yuque.com/cuggz/feplus/mactt6",
+  },
+  {
+    dateAdded: 1678090268327,
+    id: "7",
+    index: 1,
+    parentId: "1",
+    syncing: false,
+    title: "bbca",
+    url: "https://www.yuque.com/cuggz/feplus/mactt6",
+  },
+]
