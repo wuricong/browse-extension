@@ -184,6 +184,6 @@ const handleSearch = () => {
 .book-svg {
   margin-left: 8px;
   padding-left: 12px;
-  border-left: 1px solid #ffffff;
+  border-left: 1px solid #e7e8e9;
 }
 </style>
