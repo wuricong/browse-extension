@@ -35,35 +35,25 @@ const handleProdUrl = (item) => {
 const handleSearch = () => {
   window.open(`https://www.google.com/search?q=${searchValue.value}`)
 }
-
-const handleOk = () => {
-  console.log("handleOk")
-}
-
-const openPuppeteer = () => {
-  controlRef.value.openServer()
-}
 </script>
 
 <template>
-  <a-button @click="openPuppeteer" type="primary" size="small">开启Puppeteer</a-button>
   <div class="pt-2">
-    <div class="flex items-center ml-2 search" style="background-color: #fff; width: 300px">
-      <a-input-search
-        size="middle"
-        style="width: 260px"
-        @input="handleSearchChange"
-        @keydown.enter="handleSearch"
-        placeholder="请输入要搜索的内容"
-        v-model:value="searchValue"
-      />
-      <div>
+    <a-input-search
+      size="middle"
+      style="width: 260px"
+      @input="handleSearchChange"
+      @keydown.enter="handleSearch"
+      placeholder="请输入要搜索的内容"
+      v-model:value="searchValue"
+    >
+      <template #enterButton>
         <a-button @click="handleSearch" type="primary" size="middle">搜索</a-button>
-      </div>
-    </div>
+      </template>
+    </a-input-search>
 
     <div class="py-2 px-2">
-      <div class="flex gap-2 mb-2">
+      <div class="flex gap-2 mb-2 primary-enum-main">
         <div v-for="item in primaryUrlEnum" :key="item.id" @click="doOpenTab(item)" class="cursor-pointer" :style="item.style || ''">
           <svg-icon :style="item.svgStyle" :name="item.svg" />
         </div>
@@ -91,7 +81,7 @@ const openPuppeteer = () => {
     <Control ref="controlRef" />
 
     <book-modal v-model="showBookModal" />
-    <div class="back-test">1111</div>
+    <!--    <div class="back-test">1111</div>-->
   </div>
 </template>
 
@@ -160,5 +150,14 @@ const openPuppeteer = () => {
   .book:hover {
     background: rgba(0, 0, 0, 0.5);
   }
+}
+
+.primary-enum-main {
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.1); /* 半透明背景（浅色系） */
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
 }
 </style>

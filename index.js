@@ -1,18 +1,18 @@
 // 接收popup 页面的消息
-chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
-  if(message.action === 'downVideo'){
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'downVideo') {
     downVideo()
   }
-  sendResponse({success:true})
+  sendResponse({success: true})
 })
 
-let audioContext,audioSource
+let audioContext, audioSource
 
-function downVideo(){
+function downVideo() {
   console.log('downVideo')
-  setTimeout(()=>{
+  setTimeout(() => {
     const video = document.querySelector('video')
-    setTimeout(()=>{
+    setTimeout(() => {
       video.pause()
       video.currentTime = 0
 
@@ -21,7 +21,7 @@ function downVideo(){
 
       // 从 video 元素创建一个音频源
       audioSource = audioContext.createMediaElementSource(video);
-      console.log('audioSource',audioSource)
+      console.log('audioSource', audioSource)
 
       // 创建一个 MediaStreamDestination
       const destination = audioContext.createMediaStreamDestination();
@@ -48,13 +48,13 @@ function downVideo(){
 
 
       //停止录制时间
-      setTimeout(()=>{
+      setTimeout(() => {
         mediaRecorder.stop();
-      },video.duration * 1000)
+      }, video.duration * 1000)
 
       // 录制停止时，处理音频文件
       mediaRecorder.onstop = () => {
-        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        const audioBlob = new Blob(audioChunks, {type: 'audio/wav'});
         const audioUrl = URL.createObjectURL(audioBlob);
 
         // 创建一个下载链接
@@ -68,9 +68,8 @@ function downVideo(){
       mediaRecorder.start();
       console.log("Recording started...");  // 确保开始录制
 
-    },1000)
+    }, 1000)
 
-  },500)
+  }, 500)
 }
-
 

@@ -89,7 +89,6 @@ const refreshBookMarks = () => {
 
 const handleBookMouseEnter = (e, i) => {
   curIndex.value = i
-  console.log(e, "e------")
 }
 
 const handleSearchInput = (val) => {
@@ -191,6 +190,7 @@ defineExpose({ open })
 }
 
 :deep(.ant-input) {
+  flex: 1;
   color: #cad2da;
   background: rgba(0, 0, 0, 0);
   border: none;
@@ -211,6 +211,7 @@ defineExpose({ open })
 }
 
 .search-input {
+  gap: 12px;
   padding: 0 6px !important;
   border-bottom: 2px solid #cad2da;
 }
