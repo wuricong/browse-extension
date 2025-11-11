@@ -20,5 +20,11 @@
   ],
   "对称差集": [
     "xor"
+  ],
+  "微信小程序": [
+    "onLoad在onShow之前触发"
+  ],
+  "微信小程序动态 style": [
+    "style=color:{{item.statusColor}}"
   ]
 }

@@ -59,6 +59,20 @@ export const primaryUrlEnum = [
     svg: "yuque",
     svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
+  {
+    name: "微信小程序开发文档",
+    id: 12,
+    svg: "wechat-small-dev",
+    url: "https://developers.weixin.qq.com/miniprogram/dev/framework/",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
+  {
+    name: "iconfont",
+    id: 13,
+    svg: "iconfont",
+    url: "https://www.iconfont.cn/",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
 ]
 
 export const devItemsEnum = [

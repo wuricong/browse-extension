@@ -11,6 +11,7 @@ const searchValue = ref()
 const devItems = ref(devItemsEnum)
 const controlRef = ref()
 const showBookModal = ref(false)
+const isComposition = ref(false)
 const searchEngineEnum = ref([
   { label: "谷歌", value: "https://www.google.com/search?q", svg: "google", id: 1 },
   { label: "github", value: " https://github.com/search?q", svg: "github", id: 2 },
@@ -41,7 +42,15 @@ const handleProdUrl = (item) => {
   window.open(item.prodUrl, "_blank")
 }
 
+window.addEventListener("compositionstart", () => {
+  isComposition.value = true
+})
+window.addEventListener("compositionend", () => {
+  isComposition.value = false
+})
+
 const handleSearch = () => {
+  if (isComposition.value) return
   const index = searchEngineEnum.value.findIndex((item) => item.id === curEngine.value)
   const url = searchEngineEnum.value[index]
   window.open(`${url.value}=${searchValue.value}`)
@@ -57,6 +66,7 @@ const handleSearch = () => {
         </a-select-option>
       </a-select>
       <a-input
+        class="search-input-content"
         @input="handleSearchChange"
         @keydown.enter="handleSearch"
         placeholder="请输入要搜索的内容"
@@ -135,17 +145,6 @@ const handleSearch = () => {
 
 .anticon-ellipsis:hover {
   background: rgba(200, 200, 200, 0.2); /* 半透明白色背景 */
-}
-
-.search {
-  :deep(.ant-input) {
-    border: none;
-
-    &:focus {
-      border: none;
-      box-shadow: none;
-    }
-  }
 }
 
 .book-inner {
