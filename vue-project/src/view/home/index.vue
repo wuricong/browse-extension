@@ -60,7 +60,7 @@ const handleSearch = () => {
 <template>
   <div class="pt-2 px-2">
     <a-input-group compact style="width: 620px">
-      <a-select style="width: 60px" v-model:value="curEngine">
+      <a-select :bordered="false" style="width: 60px" v-model:value="curEngine">
         <a-select-option v-for="item in searchEngineEnum" :value="item.id" :key="item.id">
           <svg-icon style="height: 16px" :name="item.svg" />
         </a-select-option>
@@ -119,10 +119,6 @@ const handleSearch = () => {
   -webkit-backdrop-filter: blur(10px) saturate(120%);
   backdrop-filter: blur(10px) saturate(120%);
   border-radius: 10px;
-}
-
-.web-tag:hover {
-  background-color: #293e6b !important;
 }
 
 .devurl-container {
@@ -184,5 +180,27 @@ const handleSearch = () => {
   margin-left: 8px;
   padding-left: 12px;
   border-left: 1px solid #e7e8e9;
+}
+
+.search-input-content,
+:deep(.ant-select-selector),
+:deep(.ant-input:focus),
+:deep(.ant-input:hover){
+  box-shadow: unset !important;
+  border-color: transparent !important;
+}
+
+:deep(.ant-select-selector){
+  border-right: 1px solid #d9d9d9 !important;
+}
+
+:deep(.ant-select-selector){
+  border-right: 1px solid #d9d9d9 !important;
+}
+
+:deep(.ant-select),
+:deep(.ant-select-open:active){
+  border-color: transparent !important;
+  background-color: #ffffff;
 }
 </style>
