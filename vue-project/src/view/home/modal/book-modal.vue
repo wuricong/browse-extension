@@ -16,15 +16,18 @@
         </div>
         <div class="book-inner" @mouseleave="curIndex = undefined">
           <div
-            class="book flex justify-between items-center"
+            class="book"
             :class="curIndex === index ? 'book-active' : ''"
             v-for="(item, index) in computedBooks"
             :key="item.id"
             @click="doOpenTab(item)"
             @mouseenter="(e) => handleBookMouseEnter(e, index)"
           >
-            <div class="flex-grow">{{ item.title }}</div>
-            <DeleteOutlined @click.stop="delBook(item)" />
+            <div class="flex-grow mb-2">{{ item.title }}</div>
+            <div class="flex items-center gap-2" style="color: #91b859; font-size: 12px; line-height: 12px">
+              {{ dayjs(item.dateAdded).format("YYYY-MM-DD HH:mm:ss") }}
+              <svg-icon style="width: 12px; height: 12px" name="book-del" @click.stop="delBook(item)" />
+            </div>
           </div>
         </div>
       </div>
@@ -33,9 +36,10 @@
 </template>
 <script setup>
 import { computed, nextTick, onMounted, ref, watch } from "vue"
-import { DeleteOutlined } from "@ant-design/icons-vue"
 import { useVModel } from "@vueuse/core"
 import { testUrls } from "../../../../enum/index.js"
+import dayjs from "dayjs"
+import SvgIcon from "@/svg/svg-icon.vue"
 
 const searchBook = ref("")
 const bookmarks = ref([])
