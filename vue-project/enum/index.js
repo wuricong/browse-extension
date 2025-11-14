@@ -73,6 +73,12 @@ export const primaryUrlEnum = [
     url: "https://www.iconfont.cn/",
     svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
+  {
+    name: "douyin",
+    id: 14,
+    svg: "douyin",
+    url: "https://www.douyin.com",
+  },
 ]
 
 export const devItemsEnum = [
@@ -98,16 +104,30 @@ export const devItemsEnum = [
     id: 4,
     url: "http://192.168.0.222:8080/view/prod/job/prod_zpc_mall_web/build?delay=0sec",
   },
+]
+
+export const testItemsEnum = [
+  {
+    title: "大兴后台",
+    id: 1,
+    url: "https://dev-console.dxqpsc.com",
+  },
+  {
+    title: "大兴商城端",
+    id: 2,
+    url: "https://dev.dxqpsc.com",
+  },
   {
     title: "兆配云后台",
-    id: 4,
+    id: 3,
     url: "http://dev.91qpzs.com:3085/dashboard",
+    prodUrl: "https://b2b.zhaopeiyun.com",
   },
   {
     title: "兆配云商城",
     id: 4,
     url: "http://dev.91qpzs.com:9086/shopping",
-    propUrl: "https://www.zhaopeiyun.com",
+    prodUrl: "https://www.zhaopeiyun.com",
   },
 ]
 

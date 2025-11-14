@@ -26,5 +26,10 @@
   ],
   "微信小程序动态 style": [
     "style=color:{{item.statusColor}}"
+  ],
+  "桌面端开发": [
+    "electron",
+    "tauri",
+    "QT"
   ]
 }

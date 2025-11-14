@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue"
-import { primaryUrlEnum, devItemsEnum } from "../../../enum"
+import { primaryUrlEnum, devItemsEnum, testItemsEnum } from "../../../enum"
 import { EllipsisOutlined } from "@ant-design/icons-vue"
 import Control from "@/view/control/index.vue"
 import _ from "lodash"
@@ -9,6 +9,7 @@ import SvgIcon from "@/svg/svg-icon.vue"
 
 const searchValue = ref()
 const devItems = ref(devItemsEnum)
+const testItems = ref(testItemsEnum)
 const controlRef = ref()
 const showBookModal = ref(false)
 const isComposition = ref(false)
@@ -90,6 +91,22 @@ const handleSearch = () => {
         <div class="devurl-container">
           <div class="book-inner">
             <div class="book flex justify-between items-center" v-for="item in devItems" :key="item.id" @click="doOpenTab(item)">
+              <div>{{ item.title }}</div>
+              <a-popover v-if="item.prodUrl">
+                <template #content>
+                  <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
+                </template>
+                <EllipsisOutlined class="flex items-center" @click.stop />
+              </a-popover>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-2 flex justify-between">
+        <div class="devurl-container">
+          <div class="book-inner">
+            <div class="book flex justify-between items-center" v-for="item in testItems" :key="item.id" @click="doOpenTab(item)">
               <div>{{ item.title }}</div>
               <a-popover v-if="item.prodUrl">
                 <template #content>
@@ -185,21 +202,21 @@ const handleSearch = () => {
 .search-input-content,
 :deep(.ant-select-selector),
 :deep(.ant-input:focus),
-:deep(.ant-input:hover){
+:deep(.ant-input:hover) {
   box-shadow: unset !important;
   border-color: transparent !important;
 }
 
-:deep(.ant-select-selector){
+:deep(.ant-select-selector) {
   border-right: 1px solid #d9d9d9 !important;
 }
 
-:deep(.ant-select-selector){
+:deep(.ant-select-selector) {
   border-right: 1px solid #d9d9d9 !important;
 }
 
 :deep(.ant-select),
-:deep(.ant-select-open:active){
+:deep(.ant-select-open:active) {
   border-color: transparent !important;
   background-color: #ffffff;
 }
