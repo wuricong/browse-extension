@@ -31,5 +31,6 @@
     "electron",
     "tauri",
     "QT"
-  ]
+  ],
+  "git代理":["git config --global --unset http.proxy"]
 }
