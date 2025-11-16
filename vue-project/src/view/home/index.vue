@@ -59,8 +59,8 @@ const handleSearch = () => {
 </script>
 
 <template>
-  <div class="pt-2 px-2">
-    <a-input-group compact style="width: 620px">
+  <div class="main-search-feat">
+    <a-input-group compact style="display: flex; justify-content: center">
       <a-select :bordered="false" style="width: 60px" v-model:value="curEngine">
         <a-select-option v-for="item in searchEngineEnum" :value="item.id" :key="item.id">
           <svg-icon style="height: 16px" :name="item.svg" />
@@ -72,49 +72,49 @@ const handleSearch = () => {
         @keydown.enter="handleSearch"
         placeholder="请输入要搜索的内容"
         v-model:value="searchValue"
-        style="width: calc(100% - 200px); border-left: none"
+        style="width: 300px"
       />
       <a-button @click="handleSearch" type="primary" size="middle">搜索</a-button>
     </a-input-group>
 
-    <div class="py-2">
-      <div class="flex gap-2 mb-2 primary-enum-main">
-        <div v-for="item in primaryUrlEnum" :key="item.id" @click="doOpenTab(item)" class="cursor-pointer" :style="item.style || ''">
-          <svg-icon :style="item.svgStyle" :name="item.svg" />
-        </div>
-        <div class="book-svg">
-          <svg-icon :name="'book'" @click="handleBookOpen" class="cursor-pointer" />
-        </div>
+    <div class="flex gap-2 mb-2 primary-enum-main">
+      <div v-for="item in primaryUrlEnum" :key="item.id" @click="doOpenTab(item)" class="cursor-pointer" :style="item.style || ''">
+        <svg-icon :style="item.svgStyle" :name="item.svg" />
       </div>
+      <div class="book-svg">
+        <svg-icon :name="'book'" @click="handleBookOpen" class="cursor-pointer" />
+      </div>
+    </div>
+  </div>
 
-      <div class="py-2 flex justify-between">
-        <div class="devurl-container">
-          <div class="book-inner">
-            <div class="book flex justify-between items-center" v-for="item in devItems" :key="item.id" @click="doOpenTab(item)">
-              <div>{{ item.title }}</div>
-              <a-popover v-if="item.prodUrl">
-                <template #content>
-                  <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
-                </template>
-                <EllipsisOutlined class="flex items-center" @click.stop />
-              </a-popover>
-            </div>
+  <div class="pt-2 px-2">
+    <div class="py-2 flex justify-between">
+      <div class="devurl-container">
+        <div class="book-inner">
+          <div class="book flex justify-between items-center" v-for="item in devItems" :key="item.id" @click="doOpenTab(item)">
+            <div>{{ item.title }}</div>
+            <a-popover v-if="item.prodUrl">
+              <template #content>
+                <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
+              </template>
+              <EllipsisOutlined class="flex items-center" @click.stop />
+            </a-popover>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="py-2 flex justify-between">
-        <div class="devurl-container">
-          <div class="book-inner">
-            <div class="book flex justify-between items-center" v-for="item in testItems" :key="item.id" @click="doOpenTab(item)">
-              <div>{{ item.title }}</div>
-              <a-popover v-if="item.prodUrl">
-                <template #content>
-                  <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
-                </template>
-                <EllipsisOutlined class="flex items-center" @click.stop />
-              </a-popover>
-            </div>
+    <div class="py-2 flex justify-between">
+      <div class="devurl-container">
+        <div class="book-inner">
+          <div class="book flex justify-between items-center" v-for="item in testItems" :key="item.id" @click="doOpenTab(item)">
+            <div>{{ item.title }}</div>
+            <a-popover v-if="item.prodUrl">
+              <template #content>
+                <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
+              </template>
+              <EllipsisOutlined class="flex items-center" @click.stop />
+            </a-popover>
           </div>
         </div>
       </div>
@@ -128,6 +128,18 @@ const handleSearch = () => {
 </template>
 
 <style scoped lang="scss">
+.main-search-feat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 12px;
+  justify-content: center;
+  position: fixed;
+  left: 50%;
+  top: 100px;
+  transform: translateX(-50%);
+}
+
 .back-test {
   width: 100px;
   height: 100px;
@@ -183,9 +195,9 @@ const handleSearch = () => {
   width: fit-content;
   padding: 6px 10px;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.1); /* 半透明背景（浅色系） */
+  background: rgba(0, 0, 0, 0.2); /* 半透明背景（浅色系） */
   -webkit-backdrop-filter: blur(10px) saturate(120%);
-  backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(18px) saturate(120%);
 }
 
 :deep(.ant-select-selection-item) {

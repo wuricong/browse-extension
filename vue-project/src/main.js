@@ -9,6 +9,3 @@ const app = createApp(App)
 app.use(Antd)
 app.component("svgIcon", SvgIcon)
 app.mount("#app")
-
-
-
