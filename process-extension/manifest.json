@@ -17,19 +17,12 @@
       "js": [
         "index.js"
       ],
-      "matches": [
-        "https://www.youtube.com/*",
-        "https://www.douyin.com/*",
-        "https://developer.chrome.com/*",
-        "https://v3-web.douyinvod.com/*"
-      ]
+   "matches": ["http://*/*", "https://*/*"]
     }
   ],
   "host_permissions": [
     "http://*/*",
     "https://*/*"
   ],
-  "chrome_url_overrides": {
-    "newtab": "vue-project/dist/index.html"
-  }
+"action": {}
 }
