@@ -32,5 +32,12 @@
     "tauri",
     "QT"
   ],
-  "git代理":["git config --global --unset http.proxy"]
+  "git代理": [
+    "git config --global --unset http.proxy"
+  ],
+  "css": [
+    {
+      "不选最后一个": ":not(:last-child)"
+    }
+  ]
 }

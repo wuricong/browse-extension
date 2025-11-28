@@ -79,6 +79,12 @@ export const primaryUrlEnum = [
     svg: "douyin",
     url: "https://www.douyin.com",
   },
+  {
+    name: "微信小程序",
+    id: 14,
+    svg: "wechat-small-program",
+    url: "https://mp.weixin.qq.com/wxamp/devprofile/get_profile?token=843507886&lang=zh_CN",
+  },
 ]
 
 export const devItemsEnum = [
