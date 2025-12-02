@@ -112,6 +112,14 @@ const handleInputKeyDown = (e) => {
   } else if (e.code === "Enter") {
     window.open(computedBooks.value[curIndex.value].url, "_blank")
   }
+
+  nextTick(() => {
+    const el = document.querySelector(".book-active")
+    el?.scrollIntoView({
+      block: "nearest",
+      behavior: "smooth",
+    })
+  })
 }
 
 const doOpenTab = (item) => {
