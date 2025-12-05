@@ -199,3 +199,11 @@ export const testUrls = [
     url: "https://www.yuque.com/cuggz/feplus/mactt6",
   },
 ]
+
+export const searchEngineEnum = [
+  { label: "谷歌", value: "https://www.google.com/search?q", svg: "google", id: 1 },
+  { label: "github", value: " https://github.com/search?q", svg: "github", id: 2 },
+  { label: "必应", value: "https://cn.bing.com/search?q", svg: "bing", id: 3 },
+  { label: "掘金", value: " https://juejin.cn/search?query", svg: "juejin", id: 4 },
+  { label: "百度", value: "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd", svg: "baidu", id: 5 },
+]

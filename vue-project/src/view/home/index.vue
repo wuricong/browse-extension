@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue"
-import { primaryUrlEnum, devItemsEnum, testItemsEnum } from "../../../enum"
+import { primaryUrlEnum, devItemsEnum, testItemsEnum, searchEngineEnum } from "../../../enum"
 import { EllipsisOutlined } from "@ant-design/icons-vue"
 import Control from "@/view/control/index.vue"
 import _ from "lodash"
@@ -13,13 +13,7 @@ const testItems = ref(testItemsEnum)
 const controlRef = ref()
 const showBookModal = ref(false)
 const isComposition = ref(false)
-const searchEngineEnum = ref([
-  { label: "谷歌", value: "https://www.google.com/search?q", svg: "google", id: 1 },
-  { label: "github", value: " https://github.com/search?q", svg: "github", id: 2 },
-  { label: "必应", value: "https://cn.bing.com/search?q", svg: "bing", id: 3 },
-  { label: "掘金", value: " https://juejin.cn/search?query", svg: "juejin", id: 4 },
-  { label: "百度", value: "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd", svg: "baidu", id: 5 },
-])
+const searchEngineList = ref(searchEngineEnum)
 const curEngine = ref(1)
 
 const doOpenTab = (item) => {
@@ -31,9 +25,10 @@ onMounted(() => {
 })
 
 const handleSearchChange = _.debounce(() => {
-  fetch("http://8.141.112.69:3000/hello").then((res) => {
-    console.log("res", res)
-  })
+  console.log("search change", searchValue.value)
+  // fetch("http://8.141.112.69:3000/hello").then((res) => {
+  //   console.log("res", res)
+  // })
 }, 300)
 const handleBookOpen = () => {
   showBookModal.value = true
@@ -52,8 +47,8 @@ window.addEventListener("compositionend", () => {
 
 const handleSearch = () => {
   if (isComposition.value) return
-  const index = searchEngineEnum.value.findIndex((item) => item.id === curEngine.value)
-  const url = searchEngineEnum.value[index]
+  const index = searchEngineList.value.findIndex((item) => item.id === curEngine.value)
+  const url = searchEngineList.value[index]
   window.open(`${url.value}=${searchValue.value}`)
 }
 </script>
@@ -62,7 +57,7 @@ const handleSearch = () => {
   <div class="main-search-feat">
     <a-input-group compact style="display: flex; justify-content: center">
       <a-select :bordered="false" style="width: 60px" v-model:value="curEngine">
-        <a-select-option v-for="item in searchEngineEnum" :value="item.id" :key="item.id">
+        <a-select-option v-for="item in searchEngineList" :value="item.id" :key="item.id">
           <svg-icon style="height: 16px" :name="item.svg" />
         </a-select-option>
       </a-select>
@@ -73,6 +68,7 @@ const handleSearch = () => {
         placeholder="请输入要搜索的内容"
         v-model:value="searchValue"
         style="width: 300px"
+        allowClear
       />
       <a-button @click="handleSearch" type="primary" size="middle">搜索</a-button>
     </a-input-group>
