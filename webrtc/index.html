@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+</head>
+<body>
+<button id="connectButton" name="connectButton" class="buttonleft">
+  Connect
+</button>
+<button
+  id="disconnectButton"
+  name="disconnectButton"
+  class="buttonright"
+  disabled>
+  Disconnect
+</button>
+<div class="messagebox">
+  <label for="message"
+  >Enter a message:
+    <input
+      type="text"
+      name="message"
+      id="message"
+      placeholder="Message text"
+      inputmode="latin"
+      size="60"
+      maxlength="120"
+      disabled/>
+  </label>
+  <button id="sendButton" name="sendButton" class="buttonright" disabled>
+    Send
+  </button>
+</div>
+<div class="messagebox" id="receivebox">
+  <p>Messages received:</p>
+</div>
+</body>
+<script>
+  let connectButton = null;
+  let disconnectButton = null;
+  let sendButton = null;
+  let messageInputBox = null;
+  let receiveBox = null;
+  
+  let localConnection = null; // RTCPeerConnection for our "local" connection
+  let remoteConnection = null; // RTCPeerConnection for the "remote"
+  
+  let sendChannel = null; // RTCDataChannel for the local (sender)
+  let receiveChannel = null; // RTCDataChannel for the remote (receiver)
+  
+  function startup() {
+    connectButton = document.getElementById("connectButton");
+    disconnectButton = document.getElementById("disconnectButton");
+    sendButton = document.getElementById("sendButton");
+    messageInputBox = document.getElementById("message");
+    receiveBox = document.getElementById("receivebox");
+    
+    // Set event listeners for user interface widgets
+    
+    connectButton.addEventListener("click", connectPeers, false);
+    disconnectButton.addEventListener("click", disconnectPeers, false);
+    sendButton.addEventListener("click", sendMessage, false);
+  }
+  
+  startup()
+</script>
+</html>

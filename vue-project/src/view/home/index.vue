@@ -79,6 +79,7 @@ const handleSearch = () => {
       </div>
       <div class="book-svg">
         <svg-icon :name="'book'" @click="handleBookOpen" class="cursor-pointer" />
+        <svg-icon :name="'tools'" @click="handleBookOpen" class="cursor-pointer" />
       </div>
     </div>
   </div>
@@ -87,30 +88,27 @@ const handleSearch = () => {
     <div class="py-2 flex justify-between">
       <div class="devurl-container">
         <div class="book-inner">
-          <div class="book flex justify-between items-center" v-for="item in devItems" :key="item.id" @click="doOpenTab(item)">
-            <div>{{ item.title }}</div>
-            <a-popover v-if="item.prodUrl">
-              <template #content>
-                <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
-              </template>
-              <EllipsisOutlined class="flex items-center" @click.stop />
-            </a-popover>
+          <div>
+            <div class="book flex justify-between items-center" v-for="item in devItems" :key="item.id" @click="doOpenTab(item)">
+              <div>{{ item.title }}</div>
+              <a-popover v-if="item.prodUrl">
+                <template #content>
+                  <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
+                </template>
+                <EllipsisOutlined class="flex items-center" @click.stop />
+              </a-popover>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="py-2 flex justify-between">
-      <div class="devurl-container">
-        <div class="book-inner">
-          <div class="book flex justify-between items-center" v-for="item in testItems" :key="item.id" @click="doOpenTab(item)">
-            <div>{{ item.title }}</div>
-            <a-popover v-if="item.prodUrl">
-              <template #content>
-                <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
-              </template>
-              <EllipsisOutlined class="flex items-center" @click.stop />
-            </a-popover>
+          <div>
+            <div class="book flex justify-between items-center" v-for="item in testItems" :key="item.id" @click="doOpenTab(item)">
+              <div>{{ item.title }}</div>
+              <a-popover v-if="item.prodUrl">
+                <template #content>
+                  <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
+                </template>
+                <EllipsisOutlined class="flex items-center" @click.stop />
+              </a-popover>
+            </div>
           </div>
         </div>
       </div>
@@ -172,6 +170,10 @@ const handleSearch = () => {
   min-height: 300px;
   flex: 1;
   overflow: auto;
+
+  > div:nth-child(1) {
+    border-bottom: 2px solid #cad2da;
+  }
 
   .book {
     margin: 8px 0;

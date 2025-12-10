@@ -34,10 +34,10 @@ export const primaryUrlEnum = [
     url: "https://cn.vuejs.org/guide/introduction.html",
     id: 9,
     svg: "vue3",
-    style: { background: "#ffffff", borderRadius: "6px" },
+    svgStyle: { background: "#ffffff", borderRadius: "6px" },
   },
   { name: "lodash", url: "https://lodash.com/docs/4.17.15", id: 9, svg: "lodash", svgStyle: { padding: "2px" } },
-  { name: "bilibili", url: "https://www.bilibili.com", id: 10, svg: "bilibili", style: { background: "#ffffff", borderRadius: "6px" } },
+  { name: "bilibili", url: "https://www.bilibili.com", id: 10, svg: "bilibili", svgStyle: { background: "#ffffff", borderRadius: "6px" } },
   {
     name: "youtube",
     url: "https://www.youtube.com",
@@ -87,6 +87,23 @@ export const primaryUrlEnum = [
   },
 ]
 
+export const subEnumUrl = [
+  {
+    name: "bookmark",
+    id: 14,
+    svg: "book",
+    callBack: "",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
+  {
+    name: "工具箱",
+    id: 14,
+    svg: "tools",
+    callBack: "",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
+]
+
 export const devItemsEnum = [
   {
     title: "大兴后台(部署)",
@@ -101,12 +118,12 @@ export const devItemsEnum = [
     prodUrl: "http://192.168.0.222:8080/view/daxing_prod/job/prod_daxin_mall_web/build?delay=0sec",
   },
   {
-    title: "公共版后台",
+    title: "公共版后台(部署)",
     id: 3,
     url: "http://192.168.0.222:8080/view/prod/job/prod_zpc_mall_web_console/build?delay=0sec",
   },
   {
-    title: "公共版商城端",
+    title: "公共版商城端(部署)",
     id: 4,
     url: "http://192.168.0.222:8080/view/prod/job/prod_zpc_mall_web/build?delay=0sec",
   },
