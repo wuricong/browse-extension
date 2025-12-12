@@ -1,6 +1,6 @@
 <template>
   <div ref="modalRef" class="modal-container">
-    <a-modal :getContainer="() => $refs.modalRef" v-model:open="visible" title="书签" :footer="null" @close="visible = false">
+    <a-modal :getContainer="() => $refs.modalRef" v-model:open="visible" title="书签" :footer="null" @close="reset">
       <div class="book-container">
         <div class="search-input mb-2 flex items-center justify-between">
           <a-input
@@ -11,6 +11,13 @@
             v-model:value="searchBook"
             @input="handleSearchInput"
             @keydown="handleInputKeyDown"
+          />
+          <svg-icon
+            v-show="searchBook"
+            style="width: 14px; height: 14px"
+            class="cursor-pointer"
+            name="clear"
+            @click.stop="clearSearchValue"
           />
           <div>共 {{ computedBooks.length }} 条</div>
         </div>
@@ -91,6 +98,10 @@ const refreshBookMarks = () => {
   }
 }
 
+const clearSearchValue = () => {
+  searchBook.value = ""
+}
+
 const handleBookMouseEnter = (e, i) => {
   curIndex.value = i
 }
@@ -99,6 +110,18 @@ const handleSearchInput = (val) => {
   if (val) {
     curIndex.value = 0
   }
+}
+
+const toUp = (el, mode = "smooth") => {
+  el.scrollTo({
+    top: 0,
+    behavior: mode,
+  })
+}
+
+const reset = () => {
+  visible.value = false
+  searchBook.value = ""
 }
 
 const handleInputKeyDown = (e) => {
