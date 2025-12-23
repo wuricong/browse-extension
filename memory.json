@@ -40,5 +40,6 @@
       "不选最后一个": ":not(:last-child)"
     }
   ],
-  "css溢出隐藏 显示省略号": "overflow: hidden;    white-space: nowrap;    text-overflow: ellipsis;"
+  "css溢出隐藏 显示省略号": "overflow: hidden;    white-space: nowrap;    text-overflow: ellipsis;",
+  "flex": "flex布局 缩放系数 grow shrink"
 }

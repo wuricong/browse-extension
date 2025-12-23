@@ -73,10 +73,13 @@ const handleSearch = () => {
       <a-button @click="handleSearch" type="primary" size="middle">搜索</a-button>
     </a-input-group>
 
-    <div class="flex gap-2 mb-2 primary-enum-main">
-      <div v-for="item in primaryUrlEnum" :key="item.id" @click="doOpenTab(item)" class="cursor-pointer" :style="item.style || ''">
-        <svg-icon :style="item.svgStyle" :name="item.svg" />
+    <div class="flex justify-center mb-2 primary-enum-main">
+      <div class="flex gap-2" style="width: 680px; flex-wrap: wrap">
+        <div v-for="item in primaryUrlEnum" :key="item.name" @click="doOpenTab(item)" class="cursor-pointer" :style="item.style || ''">
+          <svg-icon :style="item.svgStyle" :name="item.svg" />
+        </div>
       </div>
+
       <div class="book-svg">
         <svg-icon :name="'book'" @click="handleBookOpen" class="cursor-pointer" />
         <svg-icon :name="'tools'" @click="handleBookOpen" class="cursor-pointer" />
@@ -190,7 +193,7 @@ const handleSearch = () => {
 }
 
 .primary-enum-main {
-  width: fit-content;
+  width: 720px;
   padding: 6px 10px;
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.2); /* 半透明背景（浅色系） */
@@ -204,8 +207,7 @@ const handleSearch = () => {
 }
 
 .book-svg {
-  margin-left: 8px;
-  padding-left: 12px;
+  padding-left: 20px;
   border-left: 1px solid #e7e8e9;
 }
 

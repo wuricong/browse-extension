@@ -1,6 +1,6 @@
 <template>
   <div style="color: #ffffff">
-    服务监控1
+    服务监控
     <div v-for="item in serverList" :key="item.id">{{ item.title }}</div>
     <a-button type="primary" @click="closeServer">关闭服务</a-button>
   </div>
