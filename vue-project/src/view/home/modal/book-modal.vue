@@ -92,12 +92,7 @@ const computedBooks = computed(() => {
 })
 
 const onScroll = (e) => {
-  console.log("e", e.target.scrollTop)
-  if (e.target.scrollTop > 100) {
-    isShowToUp.value = true
-  } else {
-    isShowToUp.value = false
-  }
+  isShowToUp.value = e.target.scrollTop > 100
 }
 
 const refreshBookMarks = () => {
@@ -105,8 +100,8 @@ const refreshBookMarks = () => {
     chrome.bookmarks.getTree((bookmarkTreeNodes) => {
       let books = []
       getBooks(bookmarkTreeNodes, books)
-      bookmarks.value = books?.reverse()
-      console.log("books", bookmarkTreeNodes, bookmarks.value.length, bookmarks.value)
+      bookmarks.value = books.sort((a, b) => b.dateAdded - a.dateAdded)
+      console.log("books", bookmarkTreeNodes, bookmarks.value)
     })
   } else {
     bookmarks.value = testUrls
