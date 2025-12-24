@@ -31,7 +31,12 @@ export const primaryUrlEnum = [
     svg: "vue3",
     svgStyle: { background: "#ffffff", borderRadius: "6px" },
   },
-  { name: "lodash", url: "https://lodash.com/docs/4.17.15", svg: "lodash", svgStyle: { padding: "2px" } },
+  {
+    name: "lodash",
+    url: "https://lodash.com/docs/4.17.15",
+    svg: "lodash",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
   { name: "bilibili", url: "https://www.bilibili.com", svg: "bilibili", svgStyle: { background: "#ffffff", borderRadius: "6px" } },
   {
     name: "youtube",
@@ -253,3 +258,5 @@ export const searchEngineEnum = [
   { label: "掘金", value: " https://juejin.cn/search?query", svg: "juejin", id: 4 },
   { label: "百度", value: "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd", svg: "baidu", id: 5 },
 ]
+
+export const recommendText = "98年双鱼 住浦东 在杨浦工作 it行业 不抽烟 情绪稳定 下雨会打伞 天黑会回家"

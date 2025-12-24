@@ -7,15 +7,16 @@
 </template>
 <script setup>
 import { ref } from "vue"
+import { recommendText } from "../../../enum/index.js"
+import { encryptWithSeed, packEncrypted, unpackEncrypted } from "@/utils/index.js"
 
 const serverList = ref([])
 
-const closeServer = () => {
-  fetch("http://localhost:61111/close/server")
-    .then((res) => res.json())
-    .then((res) => {
-      console.log("res", res)
-    })
+const closeServer = async () => {
+  const encrypted = await encryptWithSeed(recommendText, "19980209")
+  const str = packEncrypted(encrypted)
+  console.log("encrypted", str)
+  console.log("111111", unpackEncrypted(str))
 }
 
 const openServer = () => {
