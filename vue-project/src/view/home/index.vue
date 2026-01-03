@@ -120,7 +120,6 @@ const handleSearch = () => {
     <Control ref="controlRef" />
 
     <book-modal v-model="showBookModal" />
-    <!--    <div class="back-test">1111</div>-->
   </div>
 </template>
 
@@ -130,11 +129,12 @@ const handleSearch = () => {
   flex-direction: column;
   align-items: center;
   row-gap: 12px;
-  justify-content: center;
+  justify-content: flex-start;
   position: fixed;
-  left: 50%;
-  top: 100px;
-  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  min-width: 1360px;
+  padding-top: 120px;
 }
 
 .back-test {

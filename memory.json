@@ -42,5 +42,6 @@
   ],
   "css溢出隐藏 显示省略号": "overflow: hidden;    white-space: nowrap;    text-overflow: ellipsis;",
   "flex": "flex布局 缩放系数 grow shrink",
-  "AI": "代码智能补全"
+  "AI": "代码智能补全",
+  "微信长按事件": "bindlongpress"
 }

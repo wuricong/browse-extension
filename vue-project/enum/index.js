@@ -23,7 +23,12 @@ export const primaryUrlEnum = [
   },
   { name: "google", url: "https://www.google.com/", svg: "google", svgStyle: { padding: "2px" } },
   { name: "juejin", url: "https://juejin.cn/", svg: "juejin" },
-  { name: "github", url: "https://github.com/wuricong", svg: "github", svgStyle: { padding: "2px" } },
+  {
+    name: "github",
+    url: "https://github.com/wuricong",
+    svg: "github",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
   { name: "vue2", url: "https://v2.cn.vuejs.org/v2/guide/", svg: "vue2", svgStyle: { padding: "2px" } },
   {
     name: "vue3",
@@ -37,7 +42,12 @@ export const primaryUrlEnum = [
     svg: "lodash",
     svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
-  { name: "bilibili", url: "https://www.bilibili.com", svg: "bilibili", svgStyle: { background: "#ffffff", borderRadius: "6px" } },
+  {
+    name: "bilibili",
+    url: "https://www.bilibili.com",
+    svg: "bilibili",
+    svgStyle: { background: "#ffffff", borderRadius: "6px" },
+  },
   {
     name: "youtube",
     url: "https://www.youtube.com",
@@ -82,6 +92,18 @@ export const primaryUrlEnum = [
     name: "小红书",
     svg: "xiaohongshu",
     url: "https://www.xiaohongshu.com",
+  },
+  {
+    name: "npm",
+    svg: "npm",
+    url: "https://www.npmjs.com",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
+  {
+    name: "X",
+    svg: "X",
+    url: "https://x.com/home",
+    svgStyle: { background: "#000000", borderRadius: "6px", padding: "2px" },
   },
 ]
 
