@@ -105,6 +105,12 @@ export const primaryUrlEnum = [
     url: "https://x.com/home",
     svgStyle: { background: "#000000", borderRadius: "6px", padding: "2px" },
   },
+  {
+    name: "wiki",
+    svg: "wiki",
+    url: "https://zh.wikipedia.org/wiki",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
 ]
 
 export const subEnumUrl = [

@@ -15,6 +15,8 @@ const showBookModal = ref(false)
 const isComposition = ref(false)
 const searchEngineList = ref(searchEngineEnum)
 const curEngine = ref(1)
+const curUrl = ref("")
+const inInput = ref(false)
 
 const doOpenTab = (item) => {
   window.open(item.url, "_blank")
@@ -41,9 +43,26 @@ const handleProdUrl = (item) => {
 window.addEventListener("compositionstart", () => {
   isComposition.value = true
 })
+
 window.addEventListener("compositionend", () => {
   isComposition.value = false
 })
+
+const handleDrop = () => {
+  window.open(curUrl.value, "_self")
+}
+
+const handleDragEnter = () => {
+  inInput.value = true
+}
+
+const handleDragleave = () => {
+  inInput.value = false
+}
+
+const handleDragover = (e) => {
+  e.preventDefault()
+}
 
 const handleSearch = () => {
   if (isComposition.value) return
@@ -63,19 +82,33 @@ const handleSearch = () => {
       </a-select>
       <a-input
         class="search-input-content"
+        :class="inInput ? 'in-input' : ''"
         @input="handleSearchChange"
         @keydown.enter="handleSearch"
         placeholder="请输入要搜索的内容"
         v-model:value="searchValue"
         style="width: 300px"
         allowClear
+        @drop="handleDrop"
+        @dragover="handleDragover"
+        @dragenter="handleDragEnter"
+        @dragleave="handleDragleave"
       />
       <a-button @click="handleSearch" type="primary" size="middle">搜索</a-button>
     </a-input-group>
 
     <div class="flex justify-center mb-2 primary-enum-main">
       <div class="flex gap-2" style="width: 680px; flex-wrap: wrap">
-        <div v-for="item in primaryUrlEnum" :key="item.name" @click="doOpenTab(item)" class="cursor-pointer" :style="item.style || ''">
+        <div
+          draggable="true"
+          v-for="item in primaryUrlEnum"
+          :key="item.name"
+          @click="doOpenTab(item)"
+          @dragstart="curUrl = item.url"
+          @dragend="curUrl = ''"
+          class="cursor-pointer"
+          :style="item.style || ''"
+        >
           <svg-icon :style="item.svgStyle" :name="item.svg" />
         </div>
       </div>
@@ -231,5 +264,13 @@ const handleSearch = () => {
 :deep(.ant-select-open:active) {
   border-color: transparent !important;
   background-color: #ffffff;
+}
+
+.in-input {
+  background: #d3e3fd;
+
+  :deep(input) {
+    background: #d3e3fd !important;
+  }
 }
 </style>

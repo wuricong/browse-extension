@@ -41,7 +41,8 @@
     }
   ],
   "css溢出隐藏 显示省略号": "overflow: hidden;    white-space: nowrap;    text-overflow: ellipsis;",
-  "flex": "flex布局 缩放系数 grow shrink",
+  "flex": "flex布局 缩放系数 grow shrink basis",
+  "flex:1": "单值语法 flex-grow:1,flex-shrink:1;flex-basis:0",
   "AI": "代码智能补全",
   "微信长按事件": "bindlongpress"
 }
