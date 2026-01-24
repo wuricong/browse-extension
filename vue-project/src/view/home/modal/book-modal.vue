@@ -1,6 +1,6 @@
 <template>
   <div ref="modalRef" class="modal-container">
-    <a-modal :getContainer="() => $refs.modalRef" v-model:open="visible" title="书签" :footer="null" @close="reset">
+    <a-modal width="600px" :getContainer="() => $refs.modalRef" v-model:open="visible" title="书签" :footer="null" @close="reset">
       <div class="book-container relative">
         <div class="search-input mb-2 flex items-center justify-between">
           <a-input
@@ -33,8 +33,8 @@
             <div class="flex-grow mb-2">{{ item.title }}</div>
             <div class="flex items-center gap-2" style="color: #91b859; font-size: 12px; line-height: 12px">
               {{ dayjs(item.dateAdded).format("YYYY-MM-DD HH:mm:ss") }}
-              <svg-icon style="width: 12px; height: 12px" name="book-del" @click.stop="delBook(item)" />
             </div>
+            <CloseCircleFilled v-show="curIndex === index" class="del cursor-pointer" @click.stop="delBook(item)" />
           </div>
           <div class="to-up" v-show="isShowToUp" @click="toUp">
             <svg-icon style="width: 16px; height: 16px" name="to-up" class="cursor-pointer" />
@@ -51,7 +51,7 @@ import { testUrls } from "../../../../enum/index.js"
 import dayjs from "dayjs"
 import SvgIcon from "@/svg/svg-icon.vue"
 import { ISDEV } from "@/utils/index.js"
-
+import { CloseCircleFilled } from "@ant-design/icons-vue"
 const searchBook = ref("")
 const bookmarks = ref([])
 const bookTypeGroup = ref([])
@@ -197,15 +197,17 @@ defineExpose({ open })
 .book-inner {
   min-height: 300px;
   flex: 1;
-  overflow: auto;
+  overflow-y: auto;
+  padding-right: 4px;
 
   .book {
+    position: relative;
     margin: 8px 0;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     border-radius: 4px;
-    padding: 4px 8px;
+    padding: 4px 16px 4px 8px;
   }
 }
 
@@ -272,5 +274,12 @@ defineExpose({ open })
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.del {
+  position: absolute;
+  top: -5px;
+  right: -4px;
+  z-index: 9999;
 }
 </style>

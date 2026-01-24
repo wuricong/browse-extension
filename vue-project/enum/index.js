@@ -14,7 +14,7 @@ export const primaryUrlEnum = [
     name: "ChatGPT",
     url: "https://chatgpt.com/?model=auto",
     svg: "ChatGPT",
-    svgStyle: { padding: "2px" },
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
   {
     name: "elementPlus",
@@ -109,6 +109,24 @@ export const primaryUrlEnum = [
     name: "wiki",
     svg: "wiki",
     url: "https://zh.wikipedia.org/wiki",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
+  {
+    name: "cli-electron",
+    svg: "cli-electron",
+    url: "https://www.electronjs.org/zh/docs/latest/",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
+  {
+    name: "weibo",
+    svg: "weibo",
+    url: "https://weibo.com/newlogin?tabtype=search&openLoginLayer=0&url=https://www.weibo.com/",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
+  {
+    name: "shangjiaosuo",
+    svg: "shangjiaosuo",
+    url: "https://www.sse.com.cn/assortment/stock/areatrade/area/",
     svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
 ]

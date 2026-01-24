@@ -1,48 +1,130 @@
 {
-  "text-decoration": [
-    "中划线",
-    "中横线"
-  ],
-  "git-log": [
-    "显示当前分支的版本提交历史"
-  ],
-  "git branch": [
-    "列出所有本地分支"
-  ],
-  "npm config set registry https://registry.npmmirror.com": [
-    "npm 设置淘宝镜像"
-  ],
-  "原生消息传递": [
-    "~/Library/Application Support/Google/Chrome/NativeMessagingHosts"
-  ],
-  "mac新建文件": [
-    "touch 文件名"
-  ],
-  "对称差集": [
-    "xor"
-  ],
-  "微信小程序": [
-    "onLoad在onShow之前触发"
-  ],
-  "微信小程序动态 style": [
-    "style=color:{{item.statusColor}}"
-  ],
-  "桌面端开发": [
-    "electron",
-    "tauri",
-    "QT"
-  ],
-  "git代理": [
-    "git config --global --unset http.proxy"
-  ],
-  "css": [
+  "data": [
     {
-      "不选最后一个": ":not(:last-child)"
+      "title": "npm设置淘宝镜像",
+      "value": [
+        "npm config set registry https://registry.npmmirror.com"
+      ]
+    },
+    {
+      "title": "列出所有本地分支",
+      "value": [
+        "git branch"
+      ]
+    },
+    {
+      "title": "git代理",
+      "value": [
+        "git config --global --unset http.proxy"
+      ]
+    },
+    {
+      "title": "显示当前分支的版本提交历史",
+      "value": [
+        "git-log"
+      ]
+    },
+    {
+      "title": "中横线",
+      "value": [
+        "text-decoration: line-through"
+      ]
+    },
+    {
+      "title": "原生消息传递",
+      "value": [
+        "~/Library/Application Support/Google/Chrome/NativeMessagingHosts"
+      ]
+    },
+    {
+      "title": "mac新建文件",
+      "value": [
+        "touch 文件名"
+      ]
+    },
+    {
+      "title": "对称差集",
+      "value": [
+        "xor"
+      ]
+    },
+    {
+      "title": "微信小程序",
+      "value": [
+        "onLoad在onShow之前触发"
+      ]
+    },
+    {
+      "title": "微信小程序动态 style",
+      "value": [
+        "style=color:{{item.statusColor}}"
+      ]
+    },
+    {
+      "title": "桌面端开发",
+      "value": [
+        "electron",
+        "tauri",
+        "QT"
+      ]
+    },
+    {
+      "title": "css不选最后一个",
+      "value": [
+        ":not(:last-child)"
+      ]
+    },
+    {
+      "title": "css溢出隐藏 显示省略号",
+      "value": [
+        "overflow: hidden;    white-space: nowrap;    text-overflow: ellipsis;"
+      ]
+    },
+    {
+      "title": "flex",
+      "value": [
+        "flex布局 缩放系数 grow shrink basis"
+      ]
+    },
+    {
+      "title": "flex:1",
+      "value": [
+        "单值语法 flex-grow:1,flex-shrink:1;flex-basis:0"
+      ]
+    },
+    {
+      "title": "css色相反转",
+      "value": [
+        "filter: invert(1) hue-rotate(180deg)"
+      ]
+    },
+    {
+      "title": "微信小程序",
+      "value": [
+        "onLoad在onShow之前触发"
+      ]
+    },
+    {
+      "title": "微信小程序",
+      "value": [
+        "onLoad在onShow之前触发"
+      ]
+    },
+    {
+      "title": "微信小程序",
+      "value": [
+        "onLoad在onShow之前触发"
+      ]
     }
   ],
-  "css溢出隐藏 显示省略号": "overflow: hidden;    white-space: nowrap;    text-overflow: ellipsis;",
-  "flex": "flex布局 缩放系数 grow shrink basis",
-  "flex:1": "单值语法 flex-grow:1,flex-shrink:1;flex-basis:0",
   "AI": "代码智能补全",
-  "微信长按事件": "bindlongpress"
+  "微信长按事件": "bindlongpress",
+  "project": [
+    "桌游",
+    "羽毛球",
+    "健身",
+    "livehouse",
+    "homebar",
+    "不要只局限于网聊，重要的是做好自己"
+  ]
 }
