@@ -28,7 +28,7 @@
             v-for="(item, index) in computedBooks"
             :key="item.id"
             @click="doOpenTab(item)"
-            @mouseenter="(e) => handleBookMouseEnter(e, index)"
+            @mouseenter="(e) => debounceBookMouseEnter(e, index)"
           >
             <div class="flex-grow mb-2">{{ item.title }}</div>
             <div class="flex items-center gap-2" style="color: #91b859; font-size: 12px; line-height: 12px">
@@ -52,6 +52,9 @@ import dayjs from "dayjs"
 import SvgIcon from "@/svg/svg-icon.vue"
 import { ISDEV } from "@/utils/index.js"
 import { CloseCircleFilled } from "@ant-design/icons-vue"
+import { message } from "ant-design-vue"
+import _ from "lodash"
+
 const searchBook = ref("")
 const bookmarks = ref([])
 const bookTypeGroup = ref([])
@@ -116,6 +119,8 @@ const handleBookMouseEnter = (e, i) => {
   curIndex.value = i
 }
 
+const debounceBookMouseEnter = _.debounce(handleBookMouseEnter, 100)
+
 const handleSearchInput = (val) => {
   if (val) {
     curIndex.value = 0
@@ -161,6 +166,7 @@ const doOpenTab = (item) => {
 
 const delBook = (row) => {
   chrome.bookmarks.remove(row.id)
+  message.success("删除成功")
   refreshBookMarks()
 }
 

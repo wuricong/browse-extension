@@ -27,11 +27,11 @@ onMounted(() => {
 })
 
 const handleSearchChange = _.debounce(() => {
-  fetch("http://localhost:49952?search=" + searchValue.value)
-    .then((res) => res.json())
-    .then((res) => {
-      console.log("search change", res, res.msg)
-    })
+  // fetch("http://localhost:49952?search=" + searchValue.value)
+  //   .then((res) => res.json())
+  //   .then((res) => {
+  //     console.log("search change", res, res.msg)
+  //   })
 }, 300)
 const handleBookOpen = () => {
   showBookModal.value = true
