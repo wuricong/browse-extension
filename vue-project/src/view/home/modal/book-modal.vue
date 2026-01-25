@@ -24,17 +24,18 @@
         <div class="book-inner" ref="bookRef" @scroll="onScroll" @mouseleave="curIndex = undefined">
           <div
             class="book"
-            :class="curIndex === index ? 'book-active' : ''"
+            :class="!isScroll && curIndex === index ? 'book-active' : ''"
             v-for="(item, index) in computedBooks"
             :key="item.id"
             @click="doOpenTab(item)"
-            @mouseenter="(e) => handleBookMouseEnter(e, index)"
+            @mouseover="handleBookMouseEnter(index)"
+            @mousemove="handleMousemove"
           >
             <div class="flex-grow mb-2">{{ item.title }}</div>
             <div class="flex items-center gap-2" style="color: #91b859; font-size: 12px; line-height: 12px">
               {{ dayjs(item.dateAdded).format("YYYY-MM-DD HH:mm:ss") }}
             </div>
-            <CloseCircleFilled v-show="curIndex === index" class="del cursor-pointer" @click.stop="delBook(item)" />
+            <CloseCircleFilled v-show="!isScroll && curIndex === index" class="del cursor-pointer" @click.stop="delBook(item)" />
           </div>
           <div class="to-up" v-show="isShowToUp" @click="toUp">
             <svg-icon style="width: 16px; height: 16px" name="to-up" class="cursor-pointer" />
@@ -60,6 +61,8 @@ const bookmarks = ref([])
 const bookTypeGroup = ref([])
 const searchRef = ref(null)
 const modalRef = ref(null)
+const isScroll = ref(false)
+const timer = ref(null)
 
 const props = defineProps({
   modelValue: {
@@ -73,6 +76,7 @@ const visible = useVModel(props, "modelValue", emits)
 const curIndex = ref()
 const bookRef = ref(null)
 const isShowToUp = ref(false)
+const scrollTop = ref(0)
 
 onMounted(() => {
   refreshBookMarks()
@@ -95,7 +99,17 @@ const computedBooks = computed(() => {
 })
 
 const onScroll = (e) => {
+  isScroll.value = true
+  curIndex.value = undefined
+  scrollTop.value = e.target.scrollTop
   isShowToUp.value = e.target.scrollTop > 100
+  if (timer.value) {
+    clearTimeout(timer.value)
+  }
+  timer.value = setTimeout(() => {
+    timer.value = null
+    isScroll.value = false
+  }, 1000)
 }
 
 const refreshBookMarks = () => {
@@ -115,13 +129,21 @@ const clearSearchValue = () => {
   searchBook.value = ""
 }
 
-const handleBookMouseEnter = (e, i) => {
+const handleBookMouseEnter = (i) => {
   nextTick(() => {
     curIndex.value = i
   })
 }
 
-const debounceBookMouseEnter = _.debounce(handleBookMouseEnter, 200)
+const handleMousemove = () => {
+  isScroll.value = false
+  bookRef.value.scrollTo({
+    top: scrollTop.value,
+    behavior: "auto",
+  })
+}
+
+const debounceBookMouseEnter = _.debounce(handleBookMouseEnter, 300)
 
 const handleSearchInput = (val) => {
   if (val) {
@@ -192,7 +214,6 @@ defineExpose({ open })
 <style scoped lang="scss">
 .book-container {
   height: 500px;
-  overflow: auto;
   flex-shrink: 0;
   color: #cad2da;
   background: rgba(0, 0, 0, 0); /* 半透明白色背景 */
@@ -206,6 +227,7 @@ defineExpose({ open })
   min-height: 300px;
   flex: 1;
   overflow-y: auto;
+  scroll-behavior: smooth;
   padding-right: 4px;
 
   .book {
