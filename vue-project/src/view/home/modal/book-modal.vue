@@ -28,7 +28,7 @@
             v-for="(item, index) in computedBooks"
             :key="item.id"
             @click="doOpenTab(item)"
-            @mouseenter="(e) => debounceBookMouseEnter(e, index)"
+            @mouseenter="(e) => handleBookMouseEnter(e, index)"
           >
             <div class="flex-grow mb-2">{{ item.title }}</div>
             <div class="flex items-center gap-2" style="color: #91b859; font-size: 12px; line-height: 12px">
@@ -116,10 +116,12 @@ const clearSearchValue = () => {
 }
 
 const handleBookMouseEnter = (e, i) => {
-  curIndex.value = i
+  nextTick(() => {
+    curIndex.value = i
+  })
 }
 
-const debounceBookMouseEnter = _.debounce(handleBookMouseEnter, 100)
+const debounceBookMouseEnter = _.debounce(handleBookMouseEnter, 200)
 
 const handleSearchInput = (val) => {
   if (val) {
