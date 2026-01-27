@@ -31,7 +31,7 @@
             @mouseover="handleBookMouseEnter(index)"
             @mousemove="handleMousemove"
           >
-            <div class="flex-grow mb-2">{{ item.title }}</div>
+            <div>{{ item.title }}</div>
             <div class="flex items-center gap-2" style="color: #91b859; font-size: 12px; line-height: 12px">
               {{ dayjs(item.dateAdded).format("YYYY-MM-DD HH:mm:ss") }}
             </div>
@@ -46,9 +46,8 @@
   </div>
 </template>
 <script setup>
-import { computed, nextTick, onMounted, ref, watch } from "vue"
+import { computed, nextTick, onMounted, onUnmounted, onUpdated, ref, watch } from "vue"
 import { useVModel } from "@vueuse/core"
-import { testUrls } from "../../../../enum/index.js"
 import dayjs from "dayjs"
 import SvgIcon from "@/svg/svg-icon.vue"
 import { ISDEV } from "@/utils/index.js"
@@ -93,14 +92,28 @@ watch(
   },
 )
 
+onUpdated(() => {
+  console.log("update")
+})
+
 const computedBooks = computed(() => {
   const keyword = searchBook.value.toLowerCase()
   return bookmarks.value.filter((item) => item.title.toLowerCase().includes(keyword))
 })
 
+const refreshScrollStatus = () => {
+  clearTimeout(timer.value)
+  isScroll.value = false
+}
+
+window.addEventListener("scrollend", refreshScrollStatus, true)
+
+onUnmounted(() => {
+  window.removeEventListener("scrollend", refreshScrollStatus, true)
+})
+
 const onScroll = (e) => {
   isScroll.value = true
-  curIndex.value = undefined
   scrollTop.value = e.target.scrollTop
   isShowToUp.value = e.target.scrollTop > 100
   if (timer.value) {
@@ -121,7 +134,20 @@ const refreshBookMarks = () => {
       console.log("books", bookmarkTreeNodes, bookmarks.value)
     })
   } else {
-    bookmarks.value = testUrls
+    let a = 200
+    const testUrlList = []
+    while (a--) {
+      testUrlList.push({
+        dateAdded: 1678090268327,
+        id: "7",
+        index: 1,
+        parentId: "1",
+        syncing: false,
+        title: "快速入门",
+        url: "https://www.yuque.com/cuggz/feplus/mactt6",
+      })
+    }
+    bookmarks.value = testUrlList
   }
 }
 
@@ -130,9 +156,7 @@ const clearSearchValue = () => {
 }
 
 const handleBookMouseEnter = (i) => {
-  nextTick(() => {
-    curIndex.value = i
-  })
+  curIndex.value = i
 }
 
 const handleMousemove = () => {
@@ -231,13 +255,16 @@ defineExpose({ open })
   padding-right: 4px;
 
   .book {
+    min-height: 66px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     position: relative;
-    margin: 8px 0;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     border-radius: 4px;
-    padding: 4px 16px 4px 8px;
+    padding: 0 16px 0 8px;
   }
 }
 
