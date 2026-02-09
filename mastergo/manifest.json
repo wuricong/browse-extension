@@ -1,5 +1,5 @@
 {
-  "name": "iTab",
+  "name": "youtube",
   "version": "1.0",
   "description": "Build an Extension!",
   "manifest_version": 3,
@@ -10,29 +10,20 @@
     "scripting",
     "nativeMessaging",
     "declarativeNetRequest",
-    "declarativeNetRequestWithHostAccess",
-    "tabs"
+    "declarativeNetRequestWithHostAccess"
   ],
-  "background": {
-    "service_worker": "background.js",
-    "type": "module"
-  },
-  "action": {},
   "content_scripts": [
     {
+   "css":["index.css"],
       "js": [
         "index.js"
       ],
-      "matches": [
-        "*://*/*"
-      ]
+   "matches": ["https://www.douyin.com/*"]
     }
   ],
   "host_permissions": [
     "http://*/*",
     "https://*/*"
   ],
-  "chrome_url_overrides": {
-    "newtab": "vue-project/dist/index.html"
-  }
+"action": {}
 }

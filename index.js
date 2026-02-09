@@ -73,3 +73,8 @@ function downVideo() {
   }, 500)
 }
 
+chrome.runtime.sendMessage({greeting: 'hello'})
+
+
+
+

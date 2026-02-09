@@ -2,7 +2,7 @@
 import { onMounted, ref } from "vue"
 import { primaryUrlEnum, devItemsEnum, testItemsEnum, searchEngineEnum } from "../../../enum"
 import { EllipsisOutlined } from "@ant-design/icons-vue"
-import Control from "@/view/control/index.vue"
+// import Control from "@/view/control/index.vue"
 import _ from "lodash"
 import BookModal from "@/view/home/modal/book-modal.vue"
 import SvgIcon from "@/svg/svg-icon.vue"
@@ -10,20 +10,27 @@ import SvgIcon from "@/svg/svg-icon.vue"
 const searchValue = ref()
 const devItems = ref(devItemsEnum)
 const testItems = ref(testItemsEnum)
-const controlRef = ref()
+// const controlRef = ref()
 const showBookModal = ref(false)
 const isComposition = ref(false)
 const searchEngineList = ref(searchEngineEnum)
 const curEngine = ref(1)
 const curUrl = ref("")
 const inInput = ref(false)
+const searchRef = ref(null)
 
 const doOpenTab = (item) => {
   window.open(item.url, "_blank")
 }
 
 onMounted(() => {
-  // chrome.runtime.connectNative("com.mycompany.localstarter")
+  searchRef.value.$el.addEventListener("compositionstart", () => {
+    isComposition.value = true
+  })
+
+  searchRef.value.$el.addEventListener("compositionend", () => {
+    isComposition.value = false
+  })
 })
 
 const handleSearchChange = _.debounce(() => {
@@ -40,14 +47,6 @@ const handleBookOpen = () => {
 const handleProdUrl = (item) => {
   window.open(item.prodUrl, "_blank")
 }
-
-window.addEventListener("compositionstart", () => {
-  isComposition.value = true
-})
-
-window.addEventListener("compositionend", () => {
-  isComposition.value = false
-})
 
 const handleDrop = () => {
   window.open(curUrl.value, "_self")
@@ -82,6 +81,7 @@ const handleSearch = () => {
         </a-select-option>
       </a-select>
       <a-input
+        ref="searchRef"
         class="search-input-content"
         :class="inInput ? 'in-input' : ''"
         @input="handleSearchChange"
@@ -151,7 +151,7 @@ const handleSearch = () => {
       </div>
     </div>
 
-    <Control ref="controlRef" />
+    <!--    <Control ref="controlRef" />-->
 
     <book-modal v-model="showBookModal" />
   </div>

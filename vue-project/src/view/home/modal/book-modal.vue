@@ -62,6 +62,7 @@ const searchRef = ref(null)
 const modalRef = ref(null)
 const isScroll = ref(false)
 const timer = ref(null)
+const isComposition = ref(false)
 
 const props = defineProps({
   modelValue: {
@@ -89,6 +90,18 @@ watch(
         searchRef.value?.focus()
       })
     }
+    nextTick(() => {
+      console.log("searchRef.value", searchRef.value)
+      if (searchRef.value) {
+        searchRef.value.$el.addEventListener("compositionstart", () => {
+          isComposition.value = true
+        })
+
+        searchRef.value.$el.addEventListener("compositionend", () => {
+          isComposition.value = false
+        })
+      }
+    })
   },
 )
 
@@ -188,6 +201,7 @@ const reset = () => {
 }
 
 const handleInputKeyDown = (e) => {
+  if (isComposition.value) return
   if (["ArrowDown", "ArrowUp"].includes(e.code)) {
     e.preventDefault()
   }
@@ -259,12 +273,13 @@ defineExpose({ open })
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 12px;
     position: relative;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     border-radius: 4px;
-    padding: 0 16px 0 8px;
+    padding: 8px 16px 8px 8px;
   }
 }
 
