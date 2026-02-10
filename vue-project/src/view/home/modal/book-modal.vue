@@ -267,6 +267,7 @@ defineExpose({ open })
   overflow-y: auto;
   scroll-behavior: smooth;
   padding-right: 4px;
+  padding-top: 12px;
 
   .book {
     min-height: 66px;
