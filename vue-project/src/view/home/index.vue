@@ -65,7 +65,10 @@ const handleDragover = (e) => {
 }
 
 const handleSearch = () => {
-  if (isComposition.value) return
+  if (isComposition.value) {
+    isComposition.value = false
+    return
+  }
   const index = searchEngineList.value.findIndex((item) => item.id === curEngine.value)
   const url = searchEngineList.value[index]
   window.open(`${url.value}=${searchValue.value}`)

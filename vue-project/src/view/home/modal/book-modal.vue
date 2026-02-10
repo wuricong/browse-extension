@@ -201,7 +201,10 @@ const reset = () => {
 }
 
 const handleInputKeyDown = (e) => {
-  if (isComposition.value) return
+  if (isComposition.value) {
+    isComposition.value = false
+    return
+  }
   if (["ArrowDown", "ArrowUp"].includes(e.code)) {
     e.preventDefault()
   }

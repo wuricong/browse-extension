@@ -22,6 +22,11 @@ export const primaryUrlEnum = [
     svg: "element-plus",
   },
   { name: "google", url: "https://www.google.com/", svg: "google", svgStyle: { padding: "2px" } },
+  {
+    name: "chrome-extensions",
+    url: "https://developer.chrome.com/docs/extensions?hl=zh-cn",
+    svg: "chrome-extensions",
+  },
   { name: "juejin", url: "https://juejin.cn/", svg: "juejin" },
   {
     name: "github",
