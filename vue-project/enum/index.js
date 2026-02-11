@@ -17,6 +17,18 @@ export const primaryUrlEnum = [
     svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
   {
+    name: "gemini",
+    url: "https://gemini.google.com/app",
+    svg: "gemini",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
+  {
+    name: "qianwen",
+    url: "https://chat.qwen.ai",
+    svg: "qianwen",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
+  {
     name: "elementPlus",
     url: "https://element-plus.org/zh-CN/",
     svg: "element-plus",
