@@ -75,6 +75,22 @@ function downVideo() {
 
 chrome.runtime.sendMessage({greeting: 'hello'})
 
+const inputList = document.querySelectorAll('input');
+inputList.forEach(input => {
+  if (input.placeholder === '请输入手机号') {
+    input.value = '17835698682'
+    input.dispatchEvent(new Event('input', {bubbles: true}));
+  }
+  if (input.placeholder === '请输入密码') {
+    input.value = '698682'
+    input.dispatchEvent(new Event('input', {bubbles: true}));
+  }
+})
+setTimeout(() => {
+  const button = document.querySelector('.el-button');
+  button.click()
+})
+
 
 
 

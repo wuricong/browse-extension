@@ -1,6 +1,6 @@
 <template>
   <div ref="modalRef" class="modal-container">
-    <a-modal width="600px" :getContainer="() => $refs.modalRef" v-model:open="visible" title="书签" :footer="null" @close="reset">
+    <a-modal width="600px" :getContainer="() => $refs.modalRef" v-model:open="visible" title="书签" :footer="null" @cancel="reset">
       <div class="book-container relative">
         <div class="search-input mb-2 flex items-center justify-between">
           <a-input
@@ -91,7 +91,6 @@ watch(
       })
     }
     nextTick(() => {
-      console.log("searchRef.value", searchRef.value)
       if (searchRef.value) {
         searchRef.value.$el.addEventListener("compositionstart", () => {
           isComposition.value = true
@@ -104,10 +103,6 @@ watch(
     })
   },
 )
-
-onUpdated(() => {
-  console.log("update")
-})
 
 const computedBooks = computed(() => {
   const keyword = searchBook.value.toLowerCase()
@@ -196,6 +191,7 @@ const toUp = () => {
 }
 
 const reset = () => {
+  console.log("reset")
   visible.value = false
   searchBook.value = ""
 }

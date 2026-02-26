@@ -146,6 +146,18 @@ export const primaryUrlEnum = [
     url: "https://www.sse.com.cn/assortment/stock/areatrade/area/",
     svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
+  {
+    name: "tonghuashun",
+    svg: "tonghuashun",
+    url: "https://www.10jqka.com.cn/",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
+  {
+    name: "doubao",
+    svg: "doubao",
+    url: "https://www.doubao.com/chat/",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
 ]
 
 export const subEnumUrl = [

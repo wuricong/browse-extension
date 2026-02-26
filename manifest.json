@@ -23,13 +23,15 @@
       "js": [
         "index.js"
       ],
+      "css": [
+        "index.css"
+      ],
       "matches": [
-        "*://*/*"
+        "https://www.zhaopeiyun.com/*"
       ]
     }
   ],
   "host_permissions": [
-    "http://*/*",
     "https://*/*"
   ],
   "chrome_url_overrides": {

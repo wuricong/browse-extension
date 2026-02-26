@@ -5,6 +5,7 @@ import { EllipsisOutlined } from "@ant-design/icons-vue"
 // import Control from "@/view/control/index.vue"
 import _ from "lodash"
 import BookModal from "@/view/home/modal/book-modal.vue"
+import ToolModal from "@/view/home/modal/tool-modal.vue"
 import SvgIcon from "@/svg/svg-icon.vue"
 
 const searchValue = ref()
@@ -12,18 +13,21 @@ const devItems = ref(devItemsEnum)
 const testItems = ref(testItemsEnum)
 // const controlRef = ref()
 const showBookModal = ref(false)
+const showToolModal = ref(false)
 const isComposition = ref(false)
 const searchEngineList = ref(searchEngineEnum)
 const curEngine = ref(1)
 const curUrl = ref("")
 const inInput = ref(false)
 const searchRef = ref(null)
+const toolRef = ref(null)
 
 const doOpenTab = (item) => {
   window.open(item.url, "_blank")
 }
 
 onMounted(() => {
+  console.log("toolRef", toolRef)
   searchRef.value.$el.addEventListener("compositionstart", () => {
     isComposition.value = true
   })
@@ -42,6 +46,10 @@ const handleSearchChange = _.debounce(() => {
 }, 300)
 const handleBookOpen = () => {
   showBookModal.value = true
+}
+
+const handleToolOpen = () => {
+  showToolModal.value = true
 }
 
 const handleProdUrl = (item) => {
@@ -76,6 +84,7 @@ const handleSearch = () => {
 </script>
 
 <template>
+  <!--  <button class="test-button">按钮</button>-->
   <div class="main-search-feat">
     <a-input-group compact style="display: flex; justify-content: center">
       <a-select :bordered="false" style="width: 60px" v-model:value="curEngine">
@@ -119,7 +128,7 @@ const handleSearch = () => {
 
       <div class="book-svg">
         <svg-icon :name="'book'" @click="handleBookOpen" class="cursor-pointer" />
-        <svg-icon :name="'tools'" @click="handleBookOpen" class="cursor-pointer" />
+        <svg-icon :name="'tools'" @click="handleToolOpen" class="cursor-pointer" />
       </div>
     </div>
   </div>
@@ -157,6 +166,7 @@ const handleSearch = () => {
     <!--    <Control ref="controlRef" />-->
 
     <book-modal v-model="showBookModal" />
+    <tool-modal ref="toolRef" v-model="showToolModal" />
   </div>
 </template>
 
@@ -276,5 +286,22 @@ const handleSearch = () => {
   :deep(input) {
     background: #d3e3fd !important;
   }
+}
+
+.test-button {
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #fff;
+  background: #0052d9;
+  filter: brightness(1);
+  transition: all 0.3s;
+}
+
+.test-button:hover {
+  filter: brightness(1.2);
+}
+
+.test-button:active {
+  filter: brightness(0.9);
 }
 </style>
