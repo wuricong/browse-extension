@@ -6,6 +6,7 @@ import BookModal from "@/view/home/modal/book-modal.vue"
 import ToolModal from "@/view/home/modal/tool-modal.vue"
 import SvgIcon from "@/svg/svg-icon.vue"
 import _ from "lodash"
+import googleSvg from "@/svg/google.svg"
 
 const searchValue = ref()
 const showBookModal = ref(false)
@@ -18,7 +19,10 @@ const inInput = ref(false)
 const searchRef = ref(null)
 const toolRef = ref(null)
 
-const collectUrls = [{ label: "阮一峰", id: 1, url: "https://www.ruanyifeng.com/blog/", imgUrl: "img/ruanyifeng.ico" }]
+const collectUrls = [
+  { label: "阮一峰", id: 1, url: "https://www.ruanyifeng.com/blog/", imgUrl: "img/ruanyifeng.ico" },
+  { label: "谷歌财经", id: 1, url: "https://www.google.com/finance/", imgUrl: googleSvg },
+]
 
 onMounted(() => {
   searchRef.value.$el.addEventListener("compositionstart", () => {
@@ -125,7 +129,7 @@ const toPage = (item) => {
       </div>
     </div>
 
-    <div class="collect-urls text-slate-50">
+    <div class="collect-urls text-slate-50 flex gap-4">
       <div v-for="item in collectUrls" class="cursor-pointer flex items-center gap-2" @click="toPage(item)">
         <img style="height: 18px" :src="item.imgUrl" alt="" />
         <span>{{ item.label }}</span>
