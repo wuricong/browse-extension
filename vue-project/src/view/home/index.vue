@@ -104,7 +104,7 @@ const toPage = (item) => {
     </a-input-group>
 
     <div class="flex justify-center mb-2 primary-enum-main">
-      <div class="flex flex-wrap gap-2" style="width: 680px">
+      <div class="flex flex-wrap gap-2" style="width: 650px">
         <div
           draggable="true"
           v-for="item in primaryUrlEnum"
@@ -166,7 +166,7 @@ const toPage = (item) => {
 
 .primary-enum-main {
   width: 720px;
-  padding: 6px 10px;
+  padding: 6px 10px 6px 10px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.02); /* 半透明背景（浅色系） */
   backdrop-filter: blur(18px);
@@ -192,7 +192,14 @@ const toPage = (item) => {
 }
 
 .book-svg {
-  padding-left: 20px;
+  margin-left: 2px;
+  padding-left: 10px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
   border-left: 1px solid #e7e8e9;
 }
 
