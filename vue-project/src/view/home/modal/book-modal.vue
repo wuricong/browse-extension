@@ -91,15 +91,13 @@ watch(
       })
     }
     nextTick(() => {
-      if (searchRef.value) {
-        searchRef.value.$el.addEventListener("compositionstart", () => {
-          isComposition.value = true
-        })
+      searchRef.value?.$el.addEventListener("compositionstart", () => {
+        isComposition.value = true
+      })
 
-        searchRef.value.$el.addEventListener("compositionend", () => {
-          isComposition.value = false
-        })
-      }
+      searchRef.value?.$el.addEventListener("compositionend", () => {
+        isComposition.value = true
+      })
     })
   },
 )
@@ -191,14 +189,13 @@ const toUp = () => {
 }
 
 const reset = () => {
-  console.log("reset")
   visible.value = false
   searchBook.value = ""
 }
 
 const handleInputKeyDown = (e) => {
   if (isComposition.value) {
-    isComposition.value = false
+    isComposition.value = true
     return
   }
   if (["ArrowDown", "ArrowUp"].includes(e.code)) {
@@ -342,7 +339,7 @@ defineExpose({ open })
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: green;
+  background: #ebedf0;
   display: flex;
   align-items: center;
   justify-content: center;

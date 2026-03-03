@@ -1,17 +1,13 @@
 <script setup>
 import { onMounted, ref } from "vue"
-import { primaryUrlEnum, devItemsEnum, testItemsEnum, searchEngineEnum } from "../../../enum"
-import { EllipsisOutlined } from "@ant-design/icons-vue"
-// import Control from "@/view/control/index.vue"
-import _ from "lodash"
+import { primaryUrlEnum, searchEngineEnum } from "../../../enum"
+import WorkContact from "@/view/home/work-contact.vue"
 import BookModal from "@/view/home/modal/book-modal.vue"
 import ToolModal from "@/view/home/modal/tool-modal.vue"
 import SvgIcon from "@/svg/svg-icon.vue"
+import _ from "lodash"
 
 const searchValue = ref()
-const devItems = ref(devItemsEnum)
-const testItems = ref(testItemsEnum)
-// const controlRef = ref()
 const showBookModal = ref(false)
 const showToolModal = ref(false)
 const isComposition = ref(false)
@@ -22,12 +18,9 @@ const inInput = ref(false)
 const searchRef = ref(null)
 const toolRef = ref(null)
 
-const doOpenTab = (item) => {
-  window.open(item.url, "_blank")
-}
+const collectUrls = [{ label: "阮一峰", id: 1, url: "https://www.ruanyifeng.com/blog/", imgUrl: "img/ruanyifeng.ico" }]
 
 onMounted(() => {
-  console.log("toolRef", toolRef)
   searchRef.value.$el.addEventListener("compositionstart", () => {
     isComposition.value = true
   })
@@ -50,10 +43,6 @@ const handleBookOpen = () => {
 
 const handleToolOpen = () => {
   showToolModal.value = true
-}
-
-const handleProdUrl = (item) => {
-  window.open(item.prodUrl, "_blank")
 }
 
 const handleDrop = () => {
@@ -80,6 +69,10 @@ const handleSearch = () => {
   const index = searchEngineList.value.findIndex((item) => item.id === curEngine.value)
   const url = searchEngineList.value[index]
   window.open(`${url.value}=${searchValue.value}`)
+}
+
+const toPage = (item) => {
+  window.open(item.url, "_blank")
 }
 </script>
 
@@ -111,12 +104,12 @@ const handleSearch = () => {
     </a-input-group>
 
     <div class="flex justify-center mb-2 primary-enum-main">
-      <div class="flex gap-2" style="width: 680px; flex-wrap: wrap">
+      <div class="flex flex-wrap gap-2" style="width: 680px">
         <div
           draggable="true"
           v-for="item in primaryUrlEnum"
           :key="item.name"
-          @click="doOpenTab(item)"
+          @click="toPage(item)"
           @dragstart="curUrl = item.url"
           @dragend="curUrl = ''"
           class="cursor-pointer"
@@ -131,40 +124,17 @@ const handleSearch = () => {
         <svg-icon :name="'tools'" @click="handleToolOpen" class="cursor-pointer" />
       </div>
     </div>
+
+    <div class="collect-urls text-slate-50">
+      <div v-for="item in collectUrls" class="cursor-pointer flex items-center gap-2" @click="toPage(item)">
+        <img style="height: 18px" :src="item.imgUrl" alt="" />
+        <span>{{ item.label }}</span>
+      </div>
+    </div>
   </div>
 
   <div class="pt-2 px-2">
-    <div class="py-2 flex justify-between">
-      <div class="devurl-container">
-        <div class="book-inner">
-          <div>
-            <div class="book flex justify-between items-center" v-for="item in devItems" :key="item.id" @click="doOpenTab(item)">
-              <div>{{ item.title }}</div>
-              <a-popover v-if="item.prodUrl">
-                <template #content>
-                  <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
-                </template>
-                <EllipsisOutlined class="flex items-center" @click.stop />
-              </a-popover>
-            </div>
-          </div>
-          <div>
-            <div class="book flex justify-between items-center" v-for="item in testItems" :key="item.id" @click="doOpenTab(item)">
-              <div>{{ item.title }}</div>
-              <a-popover v-if="item.prodUrl">
-                <template #content>
-                  <a-button type="link" size="small" @click="handleProdUrl(item)">生产</a-button>
-                </template>
-                <EllipsisOutlined class="flex items-center" @click.stop />
-              </a-popover>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!--    <Control ref="controlRef" />-->
-
+    <work-contact />
     <book-modal v-model="showBookModal" />
     <tool-modal ref="toolRef" v-model="showToolModal" />
   </div>
@@ -184,28 +154,6 @@ const handleSearch = () => {
   padding-top: 120px;
 }
 
-.back-test {
-  width: 100px;
-  height: 100px;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.35); /* 半透明背景（浅色系） */
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
-  backdrop-filter: blur(10px) saturate(120%);
-  border-radius: 10px;
-}
-
-.devurl-container {
-  width: 300px;
-  flex-shrink: 0;
-  color: #cad2da;
-  background: rgba(0, 0, 0, 0.4); /* 半透明白色背景 */
-  backdrop-filter: blur(10px); /* 设置背景模糊效果 */
-  -webkit-backdrop-filter: blur(10px); /* Safari 支持 */
-  border-radius: 10px; /* 圆角 */
-  padding: 10px; /* 内边距 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 阴影效果 */
-}
-
 .anticon-ellipsis {
   border-radius: 4px;
   padding-left: 2px;
@@ -216,36 +164,26 @@ const handleSearch = () => {
   background: rgba(200, 200, 200, 0.2); /* 半透明白色背景 */
 }
 
-.book-inner {
-  min-height: 300px;
-  flex: 1;
-  overflow: auto;
-
-  > div:nth-child(1) {
-    border-bottom: 2px solid #cad2da;
-  }
-
-  .book {
-    margin: 8px 0;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 4px;
-    padding: 4px 8px;
-  }
-
-  .book:hover {
-    background: rgba(0, 0, 0, 0.5);
-  }
-}
-
 .primary-enum-main {
   width: 720px;
   padding: 6px 10px;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.2); /* 半透明背景（浅色系） */
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
-  backdrop-filter: blur(18px) saturate(120%);
+  background: rgba(255, 255, 255, 0.02); /* 半透明背景（浅色系） */
+  backdrop-filter: blur(18px);
+}
+
+.collect-urls {
+  width: 720px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15); /* 半透明背景（浅色系） */
+  backdrop-filter: blur(18px);
+}
+
+.collect-urls > div {
+  height: 22px;
+  box-sizing: border-box;
+  line-height: 22px;
 }
 
 :deep(.ant-select-selection-item) {

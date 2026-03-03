@@ -1,5 +1,5 @@
 <template>
-  <a-modal v-model:open="visible" title="工具箱"></a-modal>
+  <a-modal v-model:open="visible" title="工具箱"> </a-modal>
 </template>
 <script setup>
 import { useVModel } from "@vueuse/core"
