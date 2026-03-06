@@ -164,6 +164,12 @@ export const primaryUrlEnum = [
     url: "https://earth.google.com/web",
     svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
+  {
+    name: "Tailwind CSS",
+    svg: "Tailwind CSS",
+    url: "https://v3.tailwindcss.com/docs/installation",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
 ]
 
 export const subEnumUrl = [
