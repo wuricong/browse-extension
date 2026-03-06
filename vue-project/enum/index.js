@@ -158,6 +158,12 @@ export const primaryUrlEnum = [
     url: "https://www.doubao.com/chat/",
     svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
   },
+  {
+    name: "google-earth",
+    svg: "google-earth",
+    url: "https://earth.google.com/web",
+    svgStyle: { background: "#ffffff", borderRadius: "6px", padding: "2px" },
+  },
 ]
 
 export const subEnumUrl = [

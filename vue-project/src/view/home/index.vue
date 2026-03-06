@@ -7,6 +7,7 @@ import ToolModal from "@/view/home/modal/tool-modal.vue"
 import SvgIcon from "@/svg/svg-icon.vue"
 import _ from "lodash"
 import googleSvg from "@/svg/google.svg"
+import googleMaps from "@/svg/google-maps.svg"
 
 const searchValue = ref()
 const showBookModal = ref(false)
@@ -21,7 +22,9 @@ const toolRef = ref(null)
 
 const collectUrls = [
   { label: "阮一峰", id: 1, url: "https://www.ruanyifeng.com/blog/", imgUrl: "img/ruanyifeng.ico" },
-  { label: "谷歌财经", id: 1, url: "https://www.google.com/finance/", imgUrl: googleSvg },
+  { label: "财经", id: 1, url: "https://www.google.com/finance/", imgUrl: googleSvg },
+  { label: "新闻", id: 1, url: "https://news.google.com", imgUrl: googleSvg },
+  { label: "地图", id: 1, url: "https://news.google.com", imgUrl: googleMaps },
 ]
 
 onMounted(() => {
@@ -131,7 +134,7 @@ const toPage = (item) => {
 
     <div class="collect-urls text-slate-50 flex gap-4">
       <div v-for="item in collectUrls" class="cursor-pointer flex items-center gap-2" @click="toPage(item)">
-        <img style="height: 18px" :src="item.imgUrl" alt="" />
+        <img :style="{ height: item.label !== '地图' ? '18px' : '26px' }" :src="item.imgUrl" alt="" />
         <span>{{ item.label }}</span>
       </div>
     </div>

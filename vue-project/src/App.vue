@@ -16,7 +16,9 @@ const locale = ref(zhCN)
 </script>
 <template>
   <a-config-provider :theme="themeConfig" :locale="locale">
-    <div class="mask"></div>
-    <Home />
+    <a-app>
+      <div class="mask"></div>
+      <Home />
+    </a-app>
   </a-config-provider>
 </template>
